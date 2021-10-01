@@ -51,16 +51,18 @@ const DownloadClip: React.FC = () => {
 
     try {
       const { data } = await api.get(`clips/${clipSlug(clip)}`);
-      const clipDownloadLink = data.thumbnails.medium.split('/')[3].split('-');
-      setClipLink(
-        `https://production.assets.clips.twitchcdn.net/${clipDownloadLink[0]}-offset-${clipDownloadLink[2]}.mp4`,
+      const clipDownloadLink = data.thumbnails.medium.substring(
+        0,
+        data.thumbnails.medium.indexOf('-preview-'),
       );
+
+      setClipLink(`${clipDownloadLink}.mp4`);
       setTwitchData(data);
       setLoading(false);
 
       ReactGA.event({
         category: 'DownloadedClip',
-        action: `https://clips.twitch.tv/${clipSlug}`,
+        action: `https://clips.twitch.tv/${clipSlug(clip)}`,
       });
     } catch (err) {
       console.warn(err);
@@ -102,7 +104,7 @@ const DownloadClip: React.FC = () => {
 
         {twitchData && (
           <Thumbnail>
-            <img src={twitchData.thumbnails.medium} alt={twitchData.title} />
+            <video src={clipLink} controls={true} />
 
             <strong>{twitchData.title}</strong>
             <div>
