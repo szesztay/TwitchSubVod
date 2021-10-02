@@ -14,7 +14,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       if (vodId.toString().length < 9) {
         res.status(400).json({
-          error: 'Vod id is not valid',
+          error: true,
+          message: 'Vod ID is not valid',
         });
         return;
       }
