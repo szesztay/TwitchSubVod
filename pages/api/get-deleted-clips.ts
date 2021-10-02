@@ -13,17 +13,39 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       let urls: Promise<string | void>[] = [];
       let vod: string = '';
 
+      if (Number(end) - Number(start) > 900) {
+        res.status(400).json({
+          error: 'Requested range is too large',
+        });
+        return;
+      }
+
+      if (vodId.toString().length < 9) {
+        res.status(400).json({
+          error: 'Vod id is not valid',
+        });
+        return;
+      }
+
       if (vodId.toString().length === 10) {
-        const { data } = await axios.get(
-          `https://api.twitch.tv/kraken/videos/${vodId}`,
-          {
-            headers: {
-              'Client-ID': process.env.NEXT_PUBLIC_TWITCH_TOKEN,
-              Accept: 'application/vnd.twitchtv.v5+json',
+        try {
+          const { data } = await axios.get(
+            `https://api.twitch.tv/kraken/videos/${vodId}`,
+            {
+              headers: {
+                'Client-ID': process.env.NEXT_PUBLIC_TWITCH_TOKEN,
+                Accept: 'application/vnd.twitchtv.v5+json',
+              },
             },
-          },
-        );
-        vod = data.broadcast_id;
+          );
+          vod = data.broadcast_id;
+        } catch (err) {
+          res.status(400).json({
+            error: true,
+            message: err.message,
+          });
+          return;
+        }
       } else {
         vod = vodId.toString();
       }
