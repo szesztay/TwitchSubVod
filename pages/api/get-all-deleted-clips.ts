@@ -46,11 +46,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         try {
           const allDeletedClips = await DeletedClips.findOne({ vod });
 
+          if (!allDeletedClips) {
+            throw new Error('No deleted clips found');
+          }
+
           console.log('GET /get-all-deleted-clips', allDeletedClips);
           return res.status(200).json({ success: true, data: allDeletedClips });
         } catch (error) {
           console.log('ERROR GET /get-all-deleted-clips', error.message);
-          return res.status(500).json({ error: true, message: error.message });
+          return res.status(404).json({ error: true, message: error.message });
         }
       } else {
         console.log('ERROR GET /get-all-deleted-clips', 'Missing parameters');
