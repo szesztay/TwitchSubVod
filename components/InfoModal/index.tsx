@@ -4,7 +4,7 @@ import { FiInfo } from 'react-icons/fi';
 import { Container } from './styles';
 
 interface InfoModalProps {
-  text?: string;
+  text?: string | JSX.Element;
 }
 
 const InfoModal: React.FC<InfoModalProps> = ({ text }) => {
@@ -17,11 +17,11 @@ const InfoModal: React.FC<InfoModalProps> = ({ text }) => {
           <p>
             You can get the Vod Id from
             <a
-              href="https://twitchtracker.com"
+              href="https://twitchtracker.com/xqcow/streams/43911503933"
               target="_blank"
               rel="noopener noreferrer"
             >
-              twitchtracker.com
+              https://twitchtracker.com/xqcow/streams/43911503933
             </a>
           </p>
         )}
