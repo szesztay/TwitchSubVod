@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ReactGA from 'react-ga';
 import axios from 'axios';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 
 import { FiSearch } from 'react-icons/fi';
 
@@ -13,6 +13,18 @@ import ErrorModal from '@/components/ErrorModal';
 import LoadingModal from '@/components/LoadingModal';
 import Slider from '@/components/Slider';
 
+interface IDeletedClipsData {
+  clips: string[];
+  searchedZones: Array<{
+    start: number;
+    end: number;
+  }>;
+  vod: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 const DeletedClips: React.FC = () => {
   useEffect(() => {
     ReactGA.initialize(`${process.env.NEXT_PUBLIC_GOOGLE_TRACKING}`, {
@@ -22,35 +34,49 @@ const DeletedClips: React.FC = () => {
   }, []);
 
   const [vodId, setVodId] = useState('');
-  const [data, setData] = useState(['']);
+  const [
+    deletedClipsData,
+    setDeletedClipsData,
+  ] = useState<IDeletedClipsData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [sliderValue, setSliderValue] = useState<readonly number[]>([7, 15]);
   const [domain, setDomain] = useState<number[]>([0, 30]);
+  const [shouldShowRange, setShouldShowRange] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(async () => {
     try {
       setLoading(true);
       setError('');
+      // setShouldShowRange((search) => !search);
+
+      const { data } = await axios.get(
+        `/api/get-all-deleted-clips?vodId=${vodId}`,
+      );
+      setDeletedClipsData(data.data);
     } catch (err) {
-      setError(err.message);
+      setError(err.response.data.message);
+      if (err.response.status === 404) {
+        setShouldShowRange(true);
+      }
     } finally {
       setLoading(false);
     }
-  };
+  }, [setDeletedClipsData, vodId, setLoading, setError, setShouldShowRange]);
 
-  const handleDomain = (direction: string) => {
-    if (domain[0] <= 0 && direction === 'left') {
+  const handleDomain = useCallback(
+    (direction: string) => {
+      if (direction === 'left' && domain[0] >= 5) {
+        setDomain([domain[0] - 5, domain[1] - 5]);
+      }
+      if (direction === 'right') {
+        setDomain([domain[0] + 5, domain[1] + 5]);
+      }
+
       return;
-    }
-
-    if (direction === 'left') {
-      setDomain([domain[0] - 5, domain[1] - 5]);
-    }
-    if (direction === 'right') {
-      setDomain([domain[0] + 5, domain[1] + 5]);
-    }
-  };
+    },
+    [setDomain, domain],
+  );
 
   return (
     <Container>
@@ -88,19 +114,41 @@ const DeletedClips: React.FC = () => {
               }
             />
           </div>
-          <div className="time-container">
-            <Slider
-              sliderValue={sliderValue}
-              setSliderValue={setSliderValue}
-              domain={domain}
-            />
-            <div className="time-buttons">
-              <button onClick={() => handleDomain('left')}>👈</button>
-              <button onClick={() => handleDomain('right')}>👉</button>
-            </div>
-          </div>
 
-          <button type="submit" onClick={handleSubmit} aria-label="submit">
+          {shouldShowRange && (
+            <div className="time-container">
+              <Slider
+                sliderValue={sliderValue}
+                setSliderValue={setSliderValue}
+                domain={domain}
+              />
+              <div className="time-buttons">
+                <button
+                  onClick={() => handleDomain('left')}
+                  aria-label="go left"
+                  title="go left"
+                >
+                  👈
+                </button>
+                <button
+                  onClick={() => handleDomain('right')}
+                  aria-label="go right"
+                  title="go right"
+                >
+                  👉
+                </button>
+              </div>
+
+              <p>You can only search a range smaller than 15 minutes</p>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            aria-label="submit"
+            disabled={!vodId?.length}
+          >
             <FiSearch size={14} />
             Search
           </button>
@@ -110,15 +158,15 @@ const DeletedClips: React.FC = () => {
 
         {loading && <LoadingModal />}
 
-        {!!error.length && <ErrorModal message={error} />}
+        {!!error?.length && <ErrorModal message={error} />}
 
-        {/* {data && (
+        {!!deletedClipsData?.clips?.length && (
           <>
-            {data.map((item) => (
-              <div className="video-container" key={item}>
+            {deletedClipsData?.clips?.map((clip) => (
+              <div className="video-container" key={clip}>
                 <ReactPlayer
-                  key={item}
-                  url={item}
+                  key={clip}
+                  url={clip}
                   controls
                   width="100%"
                   height="100%"
@@ -126,7 +174,7 @@ const DeletedClips: React.FC = () => {
               </div>
             ))}
           </>
-        )} */}
+        )}
       </AnimationContainer>
       <Footer />
     </Container>
