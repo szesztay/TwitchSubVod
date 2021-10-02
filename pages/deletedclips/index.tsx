@@ -11,6 +11,7 @@ import InfoModal from '@/components/InfoModal';
 import Footer from '@/components/Footer';
 import ErrorModal from '@/components/ErrorModal';
 import LoadingModal from '@/components/LoadingModal';
+import Slider from '@/components/Slider';
 
 const DeletedClips: React.FC = () => {
   useEffect(() => {
@@ -23,75 +24,31 @@ const DeletedClips: React.FC = () => {
   const [vodId, setVodId] = useState('');
   const [data, setData] = useState(['']);
   const [loading, setLoading] = useState(false);
-  const [noData, setNoData] = useState(false);
-  const [startingPointH, setStartingPointH] = useState('');
-  const [startingPointM, setStartingPointM] = useState('');
-  const [startingPointS, setStartingPointS] = useState('');
-  const [endingPointH, setEndingPointH] = useState('');
-  const [endingPointM, setEndingPointM] = useState('');
-  const [endingPointS, setEndingPointS] = useState('');
+  const [error, setError] = useState('');
+  const [sliderValue, setSliderValue] = useState<readonly number[]>([7, 15]);
+  const [domain, setDomain] = useState<number[]>([0, 30]);
 
-  const hmsToSeconds = (h: any, m: any, s: any) => {
-    return +h * 3600 + +m * 60 + +s;
+  const handleSubmit = () => {
+    try {
+      setLoading(true);
+      setError('');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (loading) {
-    setTimeout(() => {
-      setLoading(false);
-      data[0] === '' && setNoData(true);
-    }, 3000);
-  }
+  const handleDomain = (direction: string) => {
+    if (domain[0] <= 0 && direction === 'left') {
+      return;
+    }
 
-  const handleSubmit = async () => {
-    try {
-      const startingSeconds = hmsToSeconds(
-        startingPointH,
-        startingPointM,
-        startingPointS,
-      );
-      const endingSeconds = hmsToSeconds(
-        endingPointH,
-        endingPointM,
-        endingPointS,
-      );
-
-      if (
-        vodId.length === 11 &&
-        endingSeconds - startingSeconds <= 300 &&
-        endingSeconds - startingSeconds > 0
-      ) {
-        setLoading(true);
-        for (let i = startingSeconds; i < endingSeconds; i++) {
-          let url = `${process.env.NEXT_PUBLIC_CORS_WORKER}https://clips-media-assets2.twitch.tv/${vodId}-offset-${i}.mp4`;
-          axios
-            .head(`${url}`)
-            .then(() => {
-              setData((oldData) => [
-                ...oldData,
-                `https://clips-media-assets2.twitch.tv/${vodId}-offset-${i}.mp4`,
-              ]);
-            })
-            .catch((err) => {
-              throw new Error(err);
-            });
-        }
-      } else {
-        throw new Error(
-          'Search time is longer than 5 minutes or Vod Id is Invalid',
-        );
-      }
-
-      ReactGA.event({
-        category: 'SearchedDeletedClip',
-        action: `${vodId}`,
-      });
-    } catch (err) {
-      alert(
-        'Search time is longer than 5 minutes or Vod Id is Invalid or Search time is invalid',
-      );
-      throw new Error(
-        'Search time is longer than 5 minutes or Vod Id is Invalid or Search time is invalid',
-      );
+    if (direction === 'left') {
+      setDomain([domain[0] - 5, domain[1] - 5]);
+    }
+    if (direction === 'right') {
+      setDomain([domain[0] + 5, domain[1] + 5]);
     }
   };
 
@@ -113,68 +70,33 @@ const DeletedClips: React.FC = () => {
               value={vodId}
               placeholder="Vod ID"
             />
-            <InfoModal />
+            <InfoModal
+              text={
+                <>
+                  <p>Vod ID is the numbers in twitch.tv/videos/123123</p>
+                  <p>
+                    Or you can get the Vod ID from
+                    <a
+                      href="https://twitchtracker.com/xqcow/streams/43911503933"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      https://twitchtracker.com/xqcow/streams/43911503933
+                    </a>
+                  </p>
+                </>
+              }
+            />
           </div>
           <div className="time-container">
-            <div className="starting-time">
-              <input
-                type="number"
-                name="Starting Point H"
-                onChange={(event) => setStartingPointH(event.target.value)}
-                value={startingPointH}
-                placeholder="h"
-                min="0"
-              />
-              <input
-                type="number"
-                name="Starting Point M"
-                onChange={(event) => setStartingPointM(event.target.value)}
-                value={startingPointM}
-                placeholder="m"
-                aria-label="startingM"
-                min="0"
-                max="59"
-              />
-
-              <input
-                type="number"
-                name="Starting Point S"
-                onChange={(event) => setStartingPointS(event.target.value)}
-                value={startingPointS}
-                placeholder="s"
-                min="0"
-                max="59"
-              />
-            </div>
-            <p>to</p>
-            <div className="ending-time">
-              <input
-                type="number"
-                name="Ending Point H"
-                onChange={(event) => setEndingPointH(event.target.value)}
-                value={endingPointH}
-                placeholder="h"
-                min="0"
-              />
-              <input
-                type="number"
-                name="Ending Point M"
-                onChange={(event) => setEndingPointM(event.target.value)}
-                value={endingPointM}
-                placeholder="m"
-                aria-label="endingM"
-                min="0"
-                max="59"
-              />
-              <input
-                type="number"
-                name="Ending Point S"
-                onChange={(event) => setEndingPointS(event.target.value)}
-                value={endingPointS}
-                placeholder="s"
-                min="0"
-                max="59"
-              />
+            <Slider
+              sliderValue={sliderValue}
+              setSliderValue={setSliderValue}
+              domain={domain}
+            />
+            <div className="time-buttons">
+              <button onClick={() => handleDomain('left')}>👈</button>
+              <button onClick={() => handleDomain('right')}>👉</button>
             </div>
           </div>
 
@@ -188,7 +110,9 @@ const DeletedClips: React.FC = () => {
 
         {loading && <LoadingModal />}
 
-        {data && (
+        {!!error.length && <ErrorModal message={error} />}
+
+        {/* {data && (
           <>
             {data.map((item) => (
               <div className="video-container" key={item}>
@@ -202,11 +126,7 @@ const DeletedClips: React.FC = () => {
               </div>
             ))}
           </>
-        )}
-
-        {noData && (
-          <ErrorModal message="There are no clips in the specified time" />
-        )}
+        )} */}
       </AnimationContainer>
       <Footer />
     </Container>

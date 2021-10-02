@@ -40,15 +40,24 @@ export const AnimationContainer = styled.div`
     }
 
     .time-container {
+      height: 100px;
+      padding: 0;
+      width: 100%;
+    }
+
+    .time-buttons {
+      padding: 0;
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-top: 60px;
 
-      input {
-        width: 2rem;
-        margin: 0 0.4rem;
-        appearance: textfield;
+      button {
+        width: 100%;
+        height: 30px;
+        font-size: 24px;
+        line-height: 28px;
       }
     }
   }
