@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="styles__Container-pgyzn6-0 kCeIyN"
+        class="styles__Container-pgyzn6-0 iZUCBN"
       >
         <div
           class="info-box"
@@ -14,11 +14,11 @@ Object {
           <p>
             You can get the Vod Id from
             <a
-              href="https://twitchtracker.com"
+              href="https://twitchtracker.com/xqcow/streams/43911503933"
               rel="noopener noreferrer"
               target="_blank"
             >
-              twitchtracker.com
+              https://twitchtracker.com/xqcow/streams/43911503933
             </a>
           </p>
         </div>
@@ -56,7 +56,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="styles__Container-pgyzn6-0 kCeIyN"
+      class="styles__Container-pgyzn6-0 iZUCBN"
     >
       <div
         class="info-box"
@@ -64,11 +64,11 @@ Object {
         <p>
           You can get the Vod Id from
           <a
-            href="https://twitchtracker.com"
+            href="https://twitchtracker.com/xqcow/streams/43911503933"
             rel="noopener noreferrer"
             target="_blank"
           >
-            twitchtracker.com
+            https://twitchtracker.com/xqcow/streams/43911503933
           </a>
         </p>
       </div>
