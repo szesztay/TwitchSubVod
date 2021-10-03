@@ -15,14 +15,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       if (Number(end) - Number(start) > 900) {
         res.status(400).json({
-          error: 'Requested range is too large',
+          error: true,
+          message: 'Search range must be smaller than 15 minutes',
         });
         return;
       }
 
       if (vodId.toString().length < 9) {
         res.status(400).json({
-          error: 'Vod id is not valid',
+          error: true,
+          message: 'Vod id is not valid',
         });
         return;
       }
@@ -88,10 +90,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         try {
+          if (!filteredResult.length) {
+            throw new Error('No clips found in the specified search range');
+          }
+
           return res.status(200).json({ success: true, clips: filteredResult });
         } catch (error) {
           console.log('ERROR GET /get-deleted-clips', error.message);
-          return res.status(500).json({ error: true, message: error.message });
+          return res.status(404).json({ error: true, message: error.message });
         }
       } else {
         console.log('ERROR GET /get-deleted-clips', 'Missing parameters');
