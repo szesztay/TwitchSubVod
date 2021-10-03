@@ -165,11 +165,17 @@ const DeletedClips: React.FC = () => {
             {deletedClipsData?.clips?.map((clip) => (
               <div className="video-container" key={clip}>
                 <ReactPlayer
-                  key={clip}
-                  url={clip}
+                  url={`${clip}`}
                   controls
                   width="100%"
                   height="100%"
+                  config={{
+                    file: {
+                      attributes: {
+                        preload: 'metadata',
+                      },
+                    },
+                  }}
                 />
               </div>
             ))}
