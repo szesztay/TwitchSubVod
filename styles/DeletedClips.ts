@@ -66,7 +66,7 @@ export const AnimationContainer = styled.div`
     }
   }
 
-  input {
+  input[type='number'] {
     background: var(--light-background);
     height: 2rem;
     width: 20rem;

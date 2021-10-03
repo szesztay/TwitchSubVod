@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import ReactGA from 'react-ga';
 import axios from 'axios';
 import ReactPlayer from 'react-player/lazy';
@@ -15,14 +15,14 @@ import Slider from '@/components/Slider';
 
 interface IDeletedClipsData {
   clips: string[];
-  searchedZones: Array<{
+  searchedZones?: Array<{
     start: number;
     end: number;
   }>;
-  vod: string;
-  _id: string;
-  createdAt: string;
-  updatedAt: string;
+  vod?: string;
+  _id?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 const DeletedClips: React.FC = () => {
@@ -40,7 +40,7 @@ const DeletedClips: React.FC = () => {
   ] = useState<IDeletedClipsData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [sliderValue, setSliderValue] = useState<readonly number[]>([7, 15]);
+  const [sliderValue, setSliderValue] = useState<readonly number[]>([14, 18]);
   const [domain, setDomain] = useState<number[]>([0, 30]);
   const [shouldShowRange, setShouldShowRange] = useState(false);
 
@@ -48,7 +48,17 @@ const DeletedClips: React.FC = () => {
     try {
       setLoading(true);
       setError('');
-      // setShouldShowRange((search) => !search);
+
+      if (!!shouldShowRange) {
+        const { data } = await axios.get(
+          `/api/get-deleted-clips?vodId=${vodId}&start=${
+            sliderValue[0] * 60
+          }&end=${sliderValue[1] * 60}`,
+        );
+        setDeletedClipsData({ clips: data.data });
+
+        return;
+      }
 
       const { data } = await axios.get(
         `/api/get-all-deleted-clips?vodId=${vodId}`,
@@ -59,10 +69,19 @@ const DeletedClips: React.FC = () => {
       if (err.response.status === 404) {
         setShouldShowRange(true);
       }
+      setDeletedClipsData(null);
     } finally {
       setLoading(false);
     }
-  }, [setDeletedClipsData, vodId, setLoading, setError, setShouldShowRange]);
+  }, [
+    setDeletedClipsData,
+    vodId,
+    setLoading,
+    setError,
+    setShouldShowRange,
+    shouldShowRange,
+    sliderValue,
+  ]);
 
   const handleDomain = useCallback(
     (direction: string) => {
@@ -77,6 +96,26 @@ const DeletedClips: React.FC = () => {
     },
     [setDomain, domain],
   );
+
+  const renderDeletedClips = useMemo(() => {
+    return deletedClipsData?.clips?.map((clip) => (
+      <div className="video-container" key={clip}>
+        <ReactPlayer
+          url={`${clip}`}
+          controls
+          width="100%"
+          height="100%"
+          config={{
+            file: {
+              attributes: {
+                preload: 'metadata',
+              },
+            },
+          }}
+        />
+      </div>
+    ));
+  }, [deletedClipsData?.clips]);
 
   return (
     <Container>
@@ -114,6 +153,14 @@ const DeletedClips: React.FC = () => {
               }
             />
           </div>
+
+          <label>
+            <input
+              type="checkbox"
+              onChange={(e) => setShouldShowRange(e.target.checked)}
+            />
+            Choose search range
+          </label>
 
           {shouldShowRange && (
             <div className="time-container">
@@ -154,33 +201,13 @@ const DeletedClips: React.FC = () => {
           </button>
         </form>
 
-        <LinkBox home />
+        <LinkBox home download vods />
 
         {loading && <LoadingModal />}
 
         {!!error?.length && <ErrorModal message={error} />}
 
-        {!!deletedClipsData?.clips?.length && (
-          <>
-            {deletedClipsData?.clips?.map((clip) => (
-              <div className="video-container" key={clip}>
-                <ReactPlayer
-                  url={`${clip}`}
-                  controls
-                  width="100%"
-                  height="100%"
-                  config={{
-                    file: {
-                      attributes: {
-                        preload: 'metadata',
-                      },
-                    },
-                  }}
-                />
-              </div>
-            ))}
-          </>
-        )}
+        {!!deletedClipsData?.clips?.length && renderDeletedClips}
       </AnimationContainer>
       <Footer />
     </Container>
