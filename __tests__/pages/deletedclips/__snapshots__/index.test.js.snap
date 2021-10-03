@@ -6,7 +6,7 @@ exports[`should render Deleted Clips correctly 1`] = `
     class="DeletedClips__Container-sc-18jbdtp-0 jbyLTS"
   >
     <div
-      class="DeletedClips__AnimationContainer-sc-18jbdtp-1 drDkdI"
+      class="DeletedClips__AnimationContainer-sc-18jbdtp-1 iLfSGJ"
     >
       <h1>
         Deleted Twitch Clips
@@ -22,20 +22,25 @@ exports[`should render Deleted Clips correctly 1`] = `
             value=""
           />
           <div
-            class="styles__Container-pgyzn6-0 kCeIyN"
+            class="styles__Container-pgyzn6-0 iZUCBN"
           >
             <div
               class="info-box"
             >
               <p>
-                You can get the Vod Id from
-                <a
-                  href="https://twitchtracker.com"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  twitchtracker.com
-                </a>
+                <p>
+                  Vod ID is the numbers in twitch.tv/videos/123123
+                </p>
+                <p>
+                  Or you can get the Vod ID from
+                  <a
+                    href="https://twitchtracker.com/xqcow/streams/43911503933"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    https://twitchtracker.com/xqcow/streams/43911503933
+                  </a>
+                </p>
               </p>
             </div>
             <svg
@@ -69,71 +74,15 @@ exports[`should render Deleted Clips correctly 1`] = `
             </svg>
           </div>
         </div>
-        <div
-          class="time-container"
-        >
-          <div
-            class="starting-time"
-          >
-            <input
-              min="0"
-              name="Starting Point H"
-              placeholder="h"
-              type="number"
-              value=""
-            />
-            <input
-              aria-label="startingM"
-              max="59"
-              min="0"
-              name="Starting Point M"
-              placeholder="m"
-              type="number"
-              value=""
-            />
-            <input
-              max="59"
-              min="0"
-              name="Starting Point S"
-              placeholder="s"
-              type="number"
-              value=""
-            />
-          </div>
-          <p>
-            to
-          </p>
-          <div
-            class="ending-time"
-          >
-            <input
-              min="0"
-              name="Ending Point H"
-              placeholder="h"
-              type="number"
-              value=""
-            />
-            <input
-              aria-label="endingM"
-              max="59"
-              min="0"
-              name="Ending Point M"
-              placeholder="m"
-              type="number"
-              value=""
-            />
-            <input
-              max="59"
-              min="0"
-              name="Ending Point S"
-              placeholder="s"
-              type="number"
-              value=""
-            />
-          </div>
-        </div>
+        <label>
+          <input
+            type="checkbox"
+          />
+          Choose search range
+        </label>
         <button
           aria-label="submit"
+          disabled=""
           type="submit"
         >
           <svg
@@ -197,13 +146,70 @@ exports[`should render Deleted Clips correctly 1`] = `
             Home
           </span>
         </a>
-      </div>
-      <div
-        class="video-container"
-      >
-        <div
-          style="width: 100%; height: 100%;"
-        />
+        <a
+          aria-label="DeletedVods"
+          class="styles__Link-cfnpnh-1 bvpnnQ"
+          href="/deletedvods"
+        >
+          <span>
+            <svg
+              fill="none"
+              height="14"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="8"
+              />
+              <line
+                x1="21"
+                x2="16.65"
+                y1="21"
+                y2="16.65"
+              />
+            </svg>
+            Search for deleted vods
+          </span>
+        </a>
+        <a
+          aria-label="DownloadClip"
+          class="styles__Link-cfnpnh-1 bvpnnQ"
+          href="/downloadclip"
+        >
+          <span>
+            <svg
+              fill="none"
+              height="14"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="8"
+              />
+              <line
+                x1="21"
+                x2="16.65"
+                y1="21"
+                y2="16.65"
+              />
+            </svg>
+            Download Twitch Clips
+          </span>
+        </a>
       </div>
     </div>
     <div

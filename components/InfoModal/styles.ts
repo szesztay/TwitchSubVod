@@ -9,16 +9,17 @@ export const Container = styled.div`
     display: flex;
     place-content: center;
     visibility: hidden;
-    width: 12rem;
-    /* height: 4.5rem; */
-    padding: 0;
+    min-width: 16rem;
+    width: fit-content;
+    max-width: 80vw;
+    padding: 0 1rem;
     background-color: var(--dark-purple);
     color: #fff;
     text-align: center;
     border-radius: 0.5rem;
 
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     top: -1.8rem;
     right: 100%;
 
@@ -26,6 +27,7 @@ export const Container = styled.div`
       margin-left: 0.15rem;
       color: var(--text);
       font-weight: 600;
+      word-break: break-word;
     }
   }
 

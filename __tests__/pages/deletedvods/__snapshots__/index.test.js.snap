@@ -22,7 +22,7 @@ exports[`should render Deleted Vods correctly 1`] = `
             value=""
           />
           <div
-            class="styles__Container-pgyzn6-0 kCeIyN"
+            class="styles__Container-pgyzn6-0 iZUCBN"
           >
             <div
               class="info-box"
@@ -30,11 +30,11 @@ exports[`should render Deleted Vods correctly 1`] = `
               <p>
                 You can get the Vod Id from
                 <a
-                  href="https://twitchtracker.com"
+                  href="https://twitchtracker.com/xqcow/streams/43911503933"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  twitchtracker.com
+                  https://twitchtracker.com/xqcow/streams/43911503933
                 </a>
               </p>
             </div>
@@ -118,7 +118,7 @@ exports[`should render Deleted Vods correctly 1`] = `
             </option>
           </select>
           <div
-            class="styles__Container-pgyzn6-0 kCeIyN"
+            class="styles__Container-pgyzn6-0 iZUCBN"
           >
             <div
               class="info-box"

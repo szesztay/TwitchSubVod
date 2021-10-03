@@ -12,6 +12,7 @@
     "next": "10.2.0",
     "next-images": "1.7.0",
     "react": "17.0.2",
+    "react-compound-slider": "3.3.1",
     "react-dom": "17.0.2",
     "react-ga": "3.3.0",
     "react-icons": "4.1.0",
@@ -78,7 +79,8 @@
       "^@/utils(.*)$": "<rootDir>/utils$1",
       "^@/utils/animations(.*)$": "<rootDir>/utils/animations$1",
       "^@/assets(.*)$": "<rootDir>/assets$1",
-      "^@/stores(.*)$": "<rootDir>/stores$1"
+      "^@/stores(.*)$": "<rootDir>/stores$1",
+      "^@/hooks(.*)$": "<rootDir>/hooks$1"
     },
     "coverageDirectory": ".coverage",
     "coveragePathIgnorePatterns": [
