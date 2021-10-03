@@ -79,7 +79,8 @@
       "^@/utils(.*)$": "<rootDir>/utils$1",
       "^@/utils/animations(.*)$": "<rootDir>/utils/animations$1",
       "^@/assets(.*)$": "<rootDir>/assets$1",
-      "^@/stores(.*)$": "<rootDir>/stores$1"
+      "^@/stores(.*)$": "<rootDir>/stores$1",
+      "^@/hooks(.*)$": "<rootDir>/hooks$1"
     },
     "coverageDirectory": ".coverage",
     "coveragePathIgnorePatterns": [
