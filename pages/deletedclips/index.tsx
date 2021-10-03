@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import ReactGA from 'react-ga';
 import axios from 'axios';
 import ReactPlayer from 'react-player/lazy';
@@ -6,6 +6,7 @@ import ReactPlayer from 'react-player/lazy';
 import { FiSearch } from 'react-icons/fi';
 
 import { Container, AnimationContainer } from '@/styles/DeletedClips';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import LinkBox from '@/components/LinkBox';
 import InfoModal from '@/components/InfoModal';
 import Footer from '@/components/Footer';
@@ -24,6 +25,36 @@ interface IDeletedClipsData {
   createdAt?: string;
   updatedAt?: string;
 }
+
+interface IClipPlayer {
+  clip: string;
+}
+
+const ClipPlayer = ({ clip }: IClipPlayer) => {
+  const ref = useRef(null);
+  const entry = useIntersectionObserver(ref, {});
+  const isVisible = !!entry?.isIntersecting;
+
+  return (
+    <div className="video-container" ref={ref}>
+      {isVisible && (
+        <ReactPlayer
+          url={`${clip}`}
+          controls
+          width="100%"
+          height="100%"
+          config={{
+            file: {
+              attributes: {
+                preload: 'metadata',
+              },
+            },
+          }}
+        />
+      )}
+    </div>
+  );
+};
 
 const DeletedClips: React.FC = () => {
   useEffect(() => {
@@ -55,7 +86,7 @@ const DeletedClips: React.FC = () => {
             sliderValue[0] * 60
           }&end=${sliderValue[1] * 60}`,
         );
-        setDeletedClipsData({ clips: data.data });
+        setDeletedClipsData({ clips: data.clips });
 
         return;
       }
@@ -96,26 +127,6 @@ const DeletedClips: React.FC = () => {
     },
     [setDomain, domain],
   );
-
-  const renderDeletedClips = useMemo(() => {
-    return deletedClipsData?.clips?.map((clip) => (
-      <div className="video-container" key={clip}>
-        <ReactPlayer
-          url={`${clip}`}
-          controls
-          width="100%"
-          height="100%"
-          config={{
-            file: {
-              attributes: {
-                preload: 'metadata',
-              },
-            },
-          }}
-        />
-      </div>
-    ));
-  }, [deletedClipsData?.clips]);
 
   return (
     <Container>
@@ -207,7 +218,10 @@ const DeletedClips: React.FC = () => {
 
         {!!error?.length && <ErrorModal message={error} />}
 
-        {!!deletedClipsData?.clips?.length && renderDeletedClips}
+        {!!deletedClipsData?.clips?.length &&
+          deletedClipsData?.clips?.map((clip) => (
+            <ClipPlayer key={clip} clip={clip} />
+          ))}
       </AnimationContainer>
       <Footer />
     </Container>
