@@ -6,7 +6,7 @@ exports[`should render Deleted Clips correctly 1`] = `
     class="DeletedClips__Container-sc-18jbdtp-0 jbyLTS"
   >
     <div
-      class="DeletedClips__AnimationContainer-sc-18jbdtp-1 jYCPeJ"
+      class="DeletedClips__AnimationContainer-sc-18jbdtp-1 iLfSGJ"
     >
       <h1>
         Deleted Twitch Clips
@@ -74,6 +74,12 @@ exports[`should render Deleted Clips correctly 1`] = `
             </svg>
           </div>
         </div>
+        <label>
+          <input
+            type="checkbox"
+          />
+          Choose search range
+        </label>
         <button
           aria-label="submit"
           disabled=""
@@ -138,6 +144,70 @@ exports[`should render Deleted Clips correctly 1`] = `
               />
             </svg>
             Home
+          </span>
+        </a>
+        <a
+          aria-label="DeletedVods"
+          class="styles__Link-cfnpnh-1 bvpnnQ"
+          href="/deletedvods"
+        >
+          <span>
+            <svg
+              fill="none"
+              height="14"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="8"
+              />
+              <line
+                x1="21"
+                x2="16.65"
+                y1="21"
+                y2="16.65"
+              />
+            </svg>
+            Search for deleted vods
+          </span>
+        </a>
+        <a
+          aria-label="DownloadClip"
+          class="styles__Link-cfnpnh-1 bvpnnQ"
+          href="/downloadclip"
+        >
+          <span>
+            <svg
+              fill="none"
+              height="14"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="8"
+              />
+              <line
+                x1="21"
+                x2="16.65"
+                y1="21"
+                y2="16.65"
+              />
+            </svg>
+            Download Twitch Clips
           </span>
         </a>
       </div>
