@@ -1,16 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import ReactGA from 'react-ga';
 import axios from 'axios';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 
 import { FiSearch } from 'react-icons/fi';
 
 import { Container, AnimationContainer } from '@/styles/DeletedClips';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import LinkBox from '@/components/LinkBox';
 import InfoModal from '@/components/InfoModal';
 import Footer from '@/components/Footer';
 import ErrorModal from '@/components/ErrorModal';
 import LoadingModal from '@/components/LoadingModal';
+import Slider from '@/components/Slider';
+
+interface IDeletedClipsData {
+  clips: string[];
+  searchedZones?: Array<{
+    start: number;
+    end: number;
+  }>;
+  vod?: string;
+  _id?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+interface IClipPlayer {
+  clip: string;
+}
+
+const ClipPlayer = ({ clip }: IClipPlayer) => {
+  const ref = useRef(null);
+  const entry = useIntersectionObserver(ref, {});
+  const isVisible = !!entry?.isIntersecting;
+
+  return (
+    <div className="video-container" ref={ref}>
+      {isVisible && (
+        <ReactPlayer
+          url={`${clip}`}
+          controls
+          width="100%"
+          height="100%"
+          config={{
+            file: {
+              attributes: {
+                preload: 'metadata',
+              },
+            },
+          }}
+        />
+      )}
+    </div>
+  );
+};
 
 const DeletedClips: React.FC = () => {
   useEffect(() => {
@@ -21,77 +65,68 @@ const DeletedClips: React.FC = () => {
   }, []);
 
   const [vodId, setVodId] = useState('');
-  const [data, setData] = useState(['']);
+  const [
+    deletedClipsData,
+    setDeletedClipsData,
+  ] = useState<IDeletedClipsData | null>(null);
   const [loading, setLoading] = useState(false);
-  const [noData, setNoData] = useState(false);
-  const [startingPointH, setStartingPointH] = useState('');
-  const [startingPointM, setStartingPointM] = useState('');
-  const [startingPointS, setStartingPointS] = useState('');
-  const [endingPointH, setEndingPointH] = useState('');
-  const [endingPointM, setEndingPointM] = useState('');
-  const [endingPointS, setEndingPointS] = useState('');
+  const [error, setError] = useState('');
+  const [sliderValue, setSliderValue] = useState<readonly number[]>([14, 18]);
+  const [domain, setDomain] = useState<number[]>([0, 30]);
+  const [shouldShowRange, setShouldShowRange] = useState(false);
 
-  const hmsToSeconds = (h: any, m: any, s: any) => {
-    return +h * 3600 + +m * 60 + +s;
-  };
-
-  if (loading) {
-    setTimeout(() => {
-      setLoading(false);
-      data[0] === '' && setNoData(true);
-    }, 3000);
-  }
-
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     try {
-      const startingSeconds = hmsToSeconds(
-        startingPointH,
-        startingPointM,
-        startingPointS,
-      );
-      const endingSeconds = hmsToSeconds(
-        endingPointH,
-        endingPointM,
-        endingPointS,
-      );
+      setLoading(true);
+      setError('');
 
-      if (
-        vodId.length === 11 &&
-        endingSeconds - startingSeconds <= 300 &&
-        endingSeconds - startingSeconds > 0
-      ) {
-        setLoading(true);
-        for (let i = startingSeconds; i < endingSeconds; i++) {
-          let url = `${process.env.NEXT_PUBLIC_CORS_WORKER}https://clips-media-assets2.twitch.tv/${vodId}-offset-${i}.mp4`;
-          axios
-            .head(`${url}`)
-            .then(() => {
-              setData((oldData) => [
-                ...oldData,
-                `https://clips-media-assets2.twitch.tv/${vodId}-offset-${i}.mp4`,
-              ]);
-            })
-            .catch((err) => {
-              throw new Error(err);
-            });
-        }
-      } else {
-        throw new Error(
-          'Search time is longer than 5 minutes or Vod Id is Invalid',
+      if (!!shouldShowRange) {
+        const { data } = await axios.get(
+          `/api/get-deleted-clips?vodId=${vodId}&start=${
+            sliderValue[0] * 60
+          }&end=${sliderValue[1] * 60}`,
         );
+        setDeletedClipsData({ clips: data.clips });
+
+        return;
       }
 
-      ReactGA.event({
-        category: 'SearchedDeletedClip',
-        action: `${vodId}`,
-      });
-    } catch (err) {
-      alert(
-        'Search time is longer than 5 minutes or Vod Id is Invalid or Search time is invalid',
+      const { data } = await axios.get(
+        `/api/get-all-deleted-clips?vodId=${vodId}`,
       );
-      throw new Error('Search time is longer than 5 minutes or Vod Id is Invalid or Search time is invalid');
+      setDeletedClipsData(data.data);
+    } catch (err) {
+      setError(err.response.data.message);
+      if (err.response.status === 404) {
+        setShouldShowRange(true);
+      }
+      setDeletedClipsData(null);
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [
+    setDeletedClipsData,
+    vodId,
+    setLoading,
+    setError,
+    setShouldShowRange,
+    shouldShowRange,
+    sliderValue,
+  ]);
+
+  const handleDomain = useCallback(
+    (direction: string) => {
+      if (direction === 'left' && domain[0] >= 5) {
+        setDomain([domain[0] - 5, domain[1] - 5]);
+      }
+      if (direction === 'right') {
+        setDomain([domain[0] + 5, domain[1] + 5]);
+      }
+
+      return;
+    },
+    [setDomain, domain],
+  );
 
   return (
     <Container>
@@ -111,100 +146,82 @@ const DeletedClips: React.FC = () => {
               value={vodId}
               placeholder="Vod ID"
             />
-            <InfoModal />
-          </div>
-          <div className="time-container">
-            <div className="starting-time">
-              <input
-                type="number"
-                name="Starting Point H"
-                onChange={(event) => setStartingPointH(event.target.value)}
-                value={startingPointH}
-                placeholder="h"
-                min="0"
-              />
-              <input
-                type="number"
-                name="Starting Point M"
-                onChange={(event) => setStartingPointM(event.target.value)}
-                value={startingPointM}
-                placeholder="m"
-                aria-label="startingM"
-                min="0"
-                max="59"
-              />
-
-              <input
-                type="number"
-                name="Starting Point S"
-                onChange={(event) => setStartingPointS(event.target.value)}
-                value={startingPointS}
-                placeholder="s"
-                min="0"
-                max="59"
-              />
-            </div>
-            <p>to</p>
-            <div className="ending-time">
-              <input
-                type="number"
-                name="Ending Point H"
-                onChange={(event) => setEndingPointH(event.target.value)}
-                value={endingPointH}
-                placeholder="h"
-                min="0"
-              />
-              <input
-                type="number"
-                name="Ending Point M"
-                onChange={(event) => setEndingPointM(event.target.value)}
-                value={endingPointM}
-                placeholder="m"
-                aria-label="endingM"
-                min="0"
-                max="59"
-              />
-              <input
-                type="number"
-                name="Ending Point S"
-                onChange={(event) => setEndingPointS(event.target.value)}
-                value={endingPointS}
-                placeholder="s"
-                min="0"
-                max="59"
-              />
-            </div>
+            <InfoModal
+              text={
+                <>
+                  <p>Vod ID is the numbers in twitch.tv/videos/123123</p>
+                  <p>
+                    Or you can get the Vod ID from
+                    <a
+                      href="https://twitchtracker.com/xqcow/streams/43911503933"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      https://twitchtracker.com/xqcow/streams/43911503933
+                    </a>
+                  </p>
+                </>
+              }
+            />
           </div>
 
-          <button type="submit" onClick={handleSubmit} aria-label="submit">
+          <label>
+            <input
+              type="checkbox"
+              onChange={(e) => setShouldShowRange(e.target.checked)}
+            />
+            Choose search range
+          </label>
+
+          {shouldShowRange && (
+            <div className="time-container">
+              <Slider
+                sliderValue={sliderValue}
+                setSliderValue={setSliderValue}
+                domain={domain}
+              />
+              <div className="time-buttons">
+                <button
+                  onClick={() => handleDomain('left')}
+                  aria-label="go left"
+                  title="go left"
+                >
+                  👈
+                </button>
+                <button
+                  onClick={() => handleDomain('right')}
+                  aria-label="go right"
+                  title="go right"
+                >
+                  👉
+                </button>
+              </div>
+
+              <p>You can only search a range smaller than 15 minutes</p>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            aria-label="submit"
+            disabled={!vodId?.length}
+          >
             <FiSearch size={14} />
             Search
           </button>
         </form>
 
-        <LinkBox home />
+        <LinkBox home download vods />
 
         {loading && <LoadingModal />}
 
-        {data && (
-          <>
-            {data.map((item) => (
-              <div className="video-container" key={item}>
-                <ReactPlayer
-                  key={item}
-                  url={item}
-                  controls
-                  width="100%"
-                  height="100%"
-                />
-              </div>
-            ))}
-          </>
-        )}
+        {!!error?.length && <ErrorModal message={error} />}
 
-        {noData && (
-          <ErrorModal message="There are no clips in the specified time" />
-        )}
+        {!!deletedClipsData?.clips?.length &&
+          deletedClipsData?.clips?.map((clip) => (
+            <ClipPlayer key={clip} clip={clip} />
+          ))}
       </AnimationContainer>
       <Footer />
     </Container>

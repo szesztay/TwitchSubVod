@@ -23,6 +23,8 @@ export const AnimationContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+    gap: 8px;
+    max-width: 20rem;
 
     .input-box {
       display: flex;
@@ -30,7 +32,6 @@ export const AnimationContainer = styled.div`
       justify-content: space-between;
       align-items: center;
       background: var(--light-background);
-      max-width: 20rem;
       padding: 0 0.5rem;
 
       input {
@@ -40,20 +41,32 @@ export const AnimationContainer = styled.div`
     }
 
     .time-container {
+      height: auto;
+      padding: 0;
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .time-buttons {
+      padding: 0 0 1rem;
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-top: 60px;
 
-      input {
-        width: 2rem;
-        margin: 0 0.4rem;
-        appearance: textfield;
+      button {
+        width: 100%;
+        height: 30px;
+        font-size: 24px;
+        line-height: 28px;
       }
     }
   }
 
-  input {
+  input[type='number'] {
     background: var(--light-background);
     height: 2rem;
     width: 20rem;
