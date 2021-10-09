@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactGA from 'react-ga';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
+import axios from 'axios';
 
 import { FiSearch, FiDownload } from 'react-icons/fi';
 
@@ -44,6 +45,14 @@ const DownloadClip: React.FC = () => {
 
   const handleVerificationSuccess = (token: string) => {
     setShowHCaptcha(false);
+
+    axios
+      .post('/api/siteverify', {
+        token,
+      })
+      .then(() => {
+        console.log('Verification success');
+      });
 
     ReactGA.event({
       category: 'hcaptcha',
