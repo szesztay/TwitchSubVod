@@ -29,6 +29,7 @@ const VodModal = ({ videoUrl, previewUrl }: any) => {
     ReactGA.event({
       category: 'hcaptcha',
       action: 'hcaptcha_resolved',
+      label: 'sub_only',
     });
   };
 
