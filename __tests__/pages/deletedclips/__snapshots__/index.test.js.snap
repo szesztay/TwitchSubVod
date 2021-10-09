@@ -6,7 +6,7 @@ exports[`should render Deleted Clips correctly 1`] = `
     class="DeletedClips__Container-sc-18jbdtp-0 jbyLTS"
   >
     <div
-      class="DeletedClips__AnimationContainer-sc-18jbdtp-1 iLfSGJ"
+      class="DeletedClips__AnimationContainer-sc-18jbdtp-1 djecwq"
     >
       <h1>
         Deleted Twitch Clips
@@ -80,6 +80,7 @@ exports[`should render Deleted Clips correctly 1`] = `
           />
           Choose search range
         </label>
+        <div />
         <button
           aria-label="submit"
           disabled=""

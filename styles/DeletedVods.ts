@@ -70,4 +70,9 @@ export const AnimationContainer = styled.div`
 
     animation: ${appearFromTop} 0.5s ease-out;
   }
+
+  div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+  }
 `;
