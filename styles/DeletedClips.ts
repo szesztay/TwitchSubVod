@@ -90,6 +90,11 @@ export const AnimationContainer = styled.div`
     }
   }
 
+  div:nth-child(4) {
+    display: flex;
+    justify-content: center;
+  }
+
   .video-container {
     max-width: 60rem;
     margin-top: 2rem;
