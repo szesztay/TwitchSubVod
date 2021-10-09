@@ -91,6 +91,7 @@ const DeletedClips: React.FC = () => {
     ReactGA.event({
       category: 'hcaptcha',
       action: 'hcaptcha_resolved',
+      label: 'deleted_clips',
     });
   };
 

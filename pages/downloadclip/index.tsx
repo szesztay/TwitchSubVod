@@ -57,6 +57,7 @@ const DownloadClip: React.FC = () => {
     ReactGA.event({
       category: 'hcaptcha',
       action: 'hcaptcha_resolved',
+      label: 'download_clip',
     });
   };
 
