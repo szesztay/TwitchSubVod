@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from 'react';
 import ReactGA from 'react-ga';
 import axios from 'axios';
 import ReactPlayer from 'react-player/lazy';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 import { FiSearch } from 'react-icons/fi';
 
@@ -74,8 +75,25 @@ const DeletedClips: React.FC = () => {
   const [sliderValue, setSliderValue] = useState<readonly number[]>([14, 18]);
   const [domain, setDomain] = useState<number[]>([0, 30]);
   const [shouldShowRange, setShouldShowRange] = useState(false);
+  const [showHCaptcha, setShowHCaptcha] = useState(true);
+
+  const handleVerificationSuccess = (token: string) => {
+    setShowHCaptcha(false);
+
+    ReactGA.event({
+      category: 'hcaptcha',
+      action: 'hcaptcha_resolved',
+    });
+  };
 
   const handleSubmit = useCallback(async () => {
+    setError('');
+    if (showHCaptcha) {
+      setError(`You must validate you're not a robot`);
+
+      return;
+    }
+
     try {
       setLoading(true);
       setError('');
@@ -105,6 +123,7 @@ const DeletedClips: React.FC = () => {
       setLoading(false);
     }
   }, [
+    showHCaptcha,
     setDeletedClipsData,
     vodId,
     setLoading,
@@ -200,6 +219,13 @@ const DeletedClips: React.FC = () => {
               <p>You can only search a range smaller than 15 minutes</p>
             </div>
           )}
+
+          <HCaptcha
+            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_TOKEN || ''}
+            onVerify={(token: string) => handleVerificationSuccess(token)}
+            tabIndex={4}
+            theme="dark"
+          />
 
           <button
             type="submit"
