@@ -6,7 +6,7 @@ exports[`should render Deleted Vods correctly 1`] = `
     class="DeletedVods__Container-lbpcr0-0 dNtvmi"
   >
     <div
-      class="DeletedVods__AnimationContainer-lbpcr0-1 gNFmSd"
+      class="DeletedVods__AnimationContainer-lbpcr0-1 dBifxd"
     >
       <h1>
         Deleted Twitch Vods
@@ -158,6 +158,7 @@ exports[`should render Deleted Vods correctly 1`] = `
             </svg>
           </div>
         </div>
+        <div />
         <button
           aria-label="submit"
           type="submit"
