@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactGA from 'react-ga';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 import { FiSearch, FiDownload } from 'react-icons/fi';
 
@@ -39,6 +40,16 @@ const DownloadClip: React.FC = () => {
   const [clipLink, setClipLink] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showHCaptcha, setShowHCaptcha] = useState(true);
+
+  const handleVerificationSuccess = (token: string) => {
+    setShowHCaptcha(false);
+
+    ReactGA.event({
+      category: 'hcaptcha',
+      action: 'hcaptcha_resolved',
+    });
+  };
 
   const clipSlug = (clipURL: string) => {
     let splittedClip = clipURL.split('/');
@@ -46,8 +57,14 @@ const DownloadClip: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    setLoading(true);
     setError('');
+
+    if (showHCaptcha) {
+      setError(`You must validate you're not a robot`);
+      return;
+    }
+
+    setLoading(true);
 
     try {
       const { data } = await api.get(`clips/${clipSlug(clip)}`);
@@ -89,6 +106,14 @@ const DownloadClip: React.FC = () => {
             placeholder="https://clips.twitch.tv/CarefulNiceJaguarRickroll"
             aria-label="DownloadClipInput"
           />
+          {showHCaptcha && (
+            <HCaptcha
+              sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_TOKEN || ''}
+              onVerify={(token: string) => handleVerificationSuccess(token)}
+              tabIndex={4}
+              theme="dark"
+            />
+          )}
           <button type="submit" onClick={handleSubmit} aria-label="submit">
             <FiSearch size={14} />
             Download Clip
