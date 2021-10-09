@@ -6,7 +6,7 @@ exports[`should render Download Clips correctly 1`] = `
     class="DownloadClip__Container-sc-1lslxgi-0 dRsUuF"
   >
     <div
-      class="DownloadClip__AnimationContainer-sc-1lslxgi-1 fWPvEo"
+      class="DownloadClip__AnimationContainer-sc-1lslxgi-1 bwkiDd"
     >
       <h1>
         Twitch Clip Downloader
@@ -19,6 +19,7 @@ exports[`should render Download Clips correctly 1`] = `
           type="text"
           value=""
         />
+        <div />
         <button
           aria-label="submit"
           type="submit"

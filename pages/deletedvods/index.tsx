@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactGA from 'react-ga';
 import axios from 'axios';
 import ReactPlayer from 'react-player';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 import { FiSearch } from 'react-icons/fi';
 
@@ -27,8 +28,33 @@ const DeletedVods: React.FC = () => {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [showHCaptcha, setShowHCaptcha] = useState(true);
+
+  const handleVerificationSuccess = (token: string) => {
+    setShowHCaptcha(false);
+
+    axios
+      .post('/api/siteverify', {
+        token,
+      })
+      .then(() => {
+        console.log('Verification success');
+      });
+
+    ReactGA.event({
+      category: 'hcaptcha',
+      action: 'hcaptcha_resolved',
+    });
+  };
 
   const handleSubmit = async () => {
+    setError(false);
+
+    if (showHCaptcha) {
+      setError(true);
+      return;
+    }
+
     if (vodId.length === 11) {
       try {
         setLoading(true);
@@ -61,7 +87,6 @@ const DeletedVods: React.FC = () => {
         console.warn(err);
         setError(true);
         setLoading(false);
-        throw new Error(err);
       }
     } else {
       alert('Invalid Vod ID');
@@ -91,6 +116,13 @@ const DeletedVods: React.FC = () => {
 
           <QualitySelection
             onChange={(event: any) => setVodQuality(event.target.value)}
+          />
+
+          <HCaptcha
+            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_TOKEN || ''}
+            onVerify={(token: string) => handleVerificationSuccess(token)}
+            tabIndex={4}
+            theme="dark"
           />
 
           <button type="submit" onClick={handleSubmit} aria-label="submit">

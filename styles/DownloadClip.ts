@@ -54,6 +54,11 @@ export const AnimationContainer = styled.div`
   a {
     margin-top: 0.5rem;
   }
+
+  div {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const Thumbnail = styled.div`
