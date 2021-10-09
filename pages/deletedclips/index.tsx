@@ -80,6 +80,14 @@ const DeletedClips: React.FC = () => {
   const handleVerificationSuccess = (token: string) => {
     setShowHCaptcha(false);
 
+    axios
+      .post('/api/siteverify', {
+        token,
+      })
+      .then(() => {
+        console.log('Verification success');
+      });
+
     ReactGA.event({
       category: 'hcaptcha',
       action: 'hcaptcha_resolved',

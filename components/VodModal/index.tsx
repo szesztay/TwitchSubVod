@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useMemo, useState } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import ReactGA from 'react-ga';
 import ReactPlayer from 'react-player';
 import { Player } from 'video-react';
+import axios from 'axios';
 
 import { useGlobal } from '@/stores/GlobalContext';
 import { Container, HCaptchaContainer, CustomOptions } from './styles';
@@ -16,6 +17,14 @@ const VodModal = ({ videoUrl, previewUrl }: any) => {
 
   const handleVerificationSuccess = (token: string) => {
     setShowHCaptcha(false);
+
+    axios
+      .post('/api/siteverify', {
+        token,
+      })
+      .then(() => {
+        console.log('Verification success');
+      });
 
     ReactGA.event({
       category: 'hcaptcha',
