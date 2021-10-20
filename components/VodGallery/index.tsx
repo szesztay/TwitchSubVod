@@ -8,6 +8,7 @@ import VodModal from '@/components/VodModal';
 import { StreamerInformation, Container, Image } from './styles';
 import Link from 'next/link';
 import api from '@/utils/services/api';
+import { cors } from '@/utils/services/cors';
 
 interface ResultProps {
   _id: string;
@@ -68,14 +69,16 @@ const VodGallery = ({ data }: any) => {
     );
     const hostUrl = await result.animated_preview_url.split('/')[2];
 
-    let dataUrl = `${process.env.NEXT_PUBLIC_CORS}https://${hostUrl}/${splitString[1]}/${videoQuality}/index-dvr.m3u8`;
-    let dataUrlUpload = `${process.env.NEXT_PUBLIC_CORS}https://${hostUrl}/${
+    let dataUrl = `${cors()}https://${hostUrl}/${
+      splitString[1]
+    }/${videoQuality}/index-dvr.m3u8`;
+    let dataUrlUpload = `${cors()}https://${hostUrl}/${
       streamerInformation.name
     }/${result._id.replace('v', '')}/${splitString[1]}/${
       videoQuality === 'chunked' ? '1080p60' : videoQuality
     }/index-dvr.m3u8`;
 
-    let dataUrlHighlight = `${process.env.NEXT_PUBLIC_CORS}https://${hostUrl}/${
+    let dataUrlHighlight = `${cors()}https://${hostUrl}/${
       splitString[1]
     }/${videoQuality}/highlight-${result._id.replace('v', '')}.m3u8`;
 

@@ -40,7 +40,8 @@ const VodModal = ({ videoUrl, previewUrl }: any) => {
 
     const clippedUrl = videoUrl
       .replace('index-dvr.m3u8', `${clippedPart}.ts`)
-      .replace(process.env.NEXT_PUBLIC_CORS, '');
+      .replace(process.env.NEXT_PUBLIC_CORS, '')
+      .replace(process.env.NEXT_PUBLIC_CORS_2, '');
 
     const link = document.createElement('a');
     link.href = clippedUrl;
@@ -73,7 +74,9 @@ const VodModal = ({ videoUrl, previewUrl }: any) => {
             <Player
               playsInline
               poster={previewUrl}
-              src={videoUrl.replace(process.env.NEXT_PUBLIC_CORS, '')}
+              src={videoUrl
+                .replace(process.env.NEXT_PUBLIC_CORS, '')
+                .replace(process.env.NEXT_PUBLIC_CORS_2, '')}
             />
           </>
         ) : (
