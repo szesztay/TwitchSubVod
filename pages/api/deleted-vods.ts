@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import { convertStringObjectArray } from '@/utils/convertStringObjectArray';
 import { searchDeletedVod } from '@/utils/searchDeletedVod';
+import connectDB from '@/utils/backend/middleware/mongodb';
+import DeletedVods from '@/utils/backend/models/deletedVods';
 
 interface IAllVods {
   length: number;
@@ -42,9 +44,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const streamerObject = {
-      channelDisplayName: allVods[0].channeldisplayname,
-      channelName: allVods[0].channelurl,
-      channelLogo: allVods[0].channellogo,
+      displayName: allVods[0].channeldisplayname,
+      name: allVods[0].channelurl,
+      logo: allVods[0].channellogo,
     };
 
     const streamObject = allVods.map(async (vod) => {
@@ -59,9 +61,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       return {
-        streamId: vod.streamId,
-        vodUrl: (await vodUrl) || null,
-        startDateTime: vod.startDateTime,
+        vod: vod.streamId,
+        url: (await vodUrl) || null,
+        date: vod.startDateTime,
         length: vod.length,
         playedGames: convertStringObjectArray(vod.gamesplayed),
       };
@@ -73,10 +75,23 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       (stream) => stream !== null && stream !== undefined,
     );
 
+    const deletedVods = await DeletedVods.findOneAndUpdate(
+      { streamer: streamerObject.name },
+      {
+        streamer: streamerObject.name,
+        displayName: streamerObject.displayName,
+        logo: streamerObject.logo,
+        $addToSet: {
+          vods: streams,
+        },
+      },
+      { upsert: true, new: true },
+    );
+
     res.status(200).json({ streamer: streamerObject, streams });
   } catch (error) {
     res.status(400).json({ error: true, message: error.message });
   }
 };
 
-export default handler;
+export default connectDB(handler);
