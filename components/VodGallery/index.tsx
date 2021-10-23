@@ -9,6 +9,7 @@ import { StreamerInformation, Container, Image } from './styles';
 import Link from 'next/link';
 import api from '@/utils/services/api';
 import { cors } from '@/utils/services/cors';
+import { timeToHMS } from '@/utils/timeToHMS';
 
 interface ResultProps {
   _id: string;
@@ -115,15 +116,6 @@ const VodGallery = ({ data }: any) => {
     }
 
     window.scrollTo({ behavior: 'smooth', top: 340 });
-  };
-
-  const timeToHMS = (s: number) => {
-    const h = Math.floor(s / 3600);
-    s -= h * 3600;
-    const m = Math.floor(s / 60);
-    s -= m * 60;
-
-    return `${h}:${m > 10 ? m : '0' + m}:${s > 10 ? s : '0' + s}`;
   };
 
   const handlePagination = useCallback(

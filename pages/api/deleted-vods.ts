@@ -88,7 +88,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       { upsert: true, new: true },
     );
 
-    res.status(200).json({ streamer: streamerObject, streams });
+    res.status(200).json({ data: deletedVods });
   } catch (error) {
     res.status(400).json({ error: true, message: error.message });
   }
