@@ -22,10 +22,7 @@ const NotFound: React.FC = () => {
     <Container>
       <img src={notFoundImage} alt="404 - Not Found Page" />
       <h1>Oops... Something went wrong</h1>
-      <LinkBox home />
-      <LinkBox vods />
-      <LinkBox clips />
-      <LinkBox download />
+      <LinkBox all />
     </Container>
   );
 };
