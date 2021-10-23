@@ -15,7 +15,7 @@ import api from '@/utils/services/api';
 import { getMostWatchedStreamers } from '@/utils/backend/queries';
 import dbConnect from '@/utils/backend/lib/dbConnect';
 
-interface IUsers {
+export interface IUsers {
   bio: string;
   created_at: string;
   display_name: string;

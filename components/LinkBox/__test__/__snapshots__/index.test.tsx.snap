@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="styles__Container-cfnpnh-0 hlHjgV"
+        class="styles__Container-cfnpnh-0 kzDwPL"
       >
         <a
           aria-label="Home"
@@ -42,7 +42,7 @@ Object {
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 hlHjgV"
+        class="styles__Container-cfnpnh-0 kzDwPL"
       >
         <a
           aria-label="DeletedClips"
@@ -78,7 +78,7 @@ Object {
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 hlHjgV"
+        class="styles__Container-cfnpnh-0 kzDwPL"
       >
         <a
           aria-label="DeletedVods"
@@ -114,7 +114,7 @@ Object {
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 hlHjgV"
+        class="styles__Container-cfnpnh-0 kzDwPL"
       >
         <a
           aria-label="DownloadClip"
@@ -150,7 +150,7 @@ Object {
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 hlHjgV"
+        class="styles__Container-cfnpnh-0 kzDwPL"
       >
         <a
           aria-label="Home"
@@ -216,6 +216,9 @@ Object {
                 y2="3"
               />
             </svg>
+            <sup>
+              new
+            </sup>
           </span>
         </a>
         <a
@@ -249,6 +252,9 @@ Object {
                 y2="3"
               />
             </svg>
+            <sup>
+              new
+            </sup>
           </span>
         </a>
         <a
@@ -289,7 +295,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="styles__Container-cfnpnh-0 hlHjgV"
+      class="styles__Container-cfnpnh-0 kzDwPL"
     >
       <a
         aria-label="Home"
@@ -325,7 +331,7 @@ Object {
       </a>
     </div>
     <div
-      class="styles__Container-cfnpnh-0 hlHjgV"
+      class="styles__Container-cfnpnh-0 kzDwPL"
     >
       <a
         aria-label="DeletedClips"
@@ -361,7 +367,7 @@ Object {
       </a>
     </div>
     <div
-      class="styles__Container-cfnpnh-0 hlHjgV"
+      class="styles__Container-cfnpnh-0 kzDwPL"
     >
       <a
         aria-label="DeletedVods"
@@ -397,7 +403,7 @@ Object {
       </a>
     </div>
     <div
-      class="styles__Container-cfnpnh-0 hlHjgV"
+      class="styles__Container-cfnpnh-0 kzDwPL"
     >
       <a
         aria-label="DownloadClip"
@@ -433,7 +439,7 @@ Object {
       </a>
     </div>
     <div
-      class="styles__Container-cfnpnh-0 hlHjgV"
+      class="styles__Container-cfnpnh-0 kzDwPL"
     >
       <a
         aria-label="Home"
@@ -499,6 +505,9 @@ Object {
               y2="3"
             />
           </svg>
+          <sup>
+            new
+          </sup>
         </span>
       </a>
       <a
@@ -532,6 +541,9 @@ Object {
               y2="3"
             />
           </svg>
+          <sup>
+            new
+          </sup>
         </span>
       </a>
       <a

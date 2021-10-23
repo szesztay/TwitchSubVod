@@ -14,11 +14,12 @@ interface IAvatar {
   avatar: string;
   bio: string;
   name: string;
+  isDeleted?: boolean;
 }
 
-const Avatar = ({ streamerName, avatar, bio, name }: IAvatar) => {
+const Avatar = ({ streamerName, avatar, bio, name, isDeleted }: IAvatar) => {
   return (
-    <Link href={`/videos/${name}`}>
+    <Link href={`/${isDeleted ? 'deletedvods' : 'videos'}/${name}`}>
       <AvatarContainer>
         <StreamerAvatar
           src={avatar.replace('300x300', '150x150')}

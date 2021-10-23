@@ -25,12 +25,14 @@ const LinkBox = ({ home, clips, vods, download, all }: LinksProps) => {
           <span>
             Search for Deleted Clips
             <FiExternalLink size={14} />
+            <sup>new</sup>
           </span>
         </Link>
         <Link href="/deletedvods" aria-label="DeletedVods">
           <span>
             Search for Deleted Vods
             <FiExternalLink size={14} />
+            <sup>new</sup>
           </span>
         </Link>
         <Link href="/downloadclip" aria-label="DownloadClip">

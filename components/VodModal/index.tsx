@@ -8,7 +8,15 @@ import axios from 'axios';
 import { useGlobal } from '@/stores/GlobalContext';
 import { Container, HCaptchaContainer, CustomOptions } from './styles';
 
-const VodModal = ({ videoUrl, previewUrl }: any) => {
+const proxy1 = process.env.NEXT_PUBLIC_CORS as string;
+const proxy2 = process.env.NEXT_PUBLIC_CORS_1 as string;
+
+interface IVodModal {
+  videoUrl: string;
+  previewUrl?: string;
+}
+
+const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const playerRef: any = useRef(null);
 
@@ -40,8 +48,8 @@ const VodModal = ({ videoUrl, previewUrl }: any) => {
 
     const clippedUrl = videoUrl
       .replace('index-dvr.m3u8', `${clippedPart}.ts`)
-      .replace(process.env.NEXT_PUBLIC_CORS, '')
-      .replace(process.env.NEXT_PUBLIC_CORS_2, '');
+      .replace(proxy1, '')
+      .replace(proxy2, '');
 
     const link = document.createElement('a');
     link.href = clippedUrl;
@@ -73,10 +81,8 @@ const VodModal = ({ videoUrl, previewUrl }: any) => {
           <>
             <Player
               playsInline
-              poster={previewUrl}
-              src={videoUrl
-                .replace(process.env.NEXT_PUBLIC_CORS, '')
-                .replace(process.env.NEXT_PUBLIC_CORS_2, '')}
+              poster={previewUrl || ''}
+              src={videoUrl.replace(proxy1, '').replace(proxy2, '')}
             />
           </>
         ) : (
