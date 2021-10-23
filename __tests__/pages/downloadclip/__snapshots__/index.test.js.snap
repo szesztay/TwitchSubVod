@@ -51,7 +51,7 @@ exports[`should render Download Clips correctly 1`] = `
         </button>
       </form>
       <div
-        class="styles__Container-cfnpnh-0 hlHjgV"
+        class="styles__Container-cfnpnh-0 kzDwPL"
       >
         <a
           aria-label="Home"
@@ -87,7 +87,7 @@ exports[`should render Download Clips correctly 1`] = `
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 hlHjgV"
+        class="styles__Container-cfnpnh-0 kzDwPL"
       >
         <a
           aria-label="DeletedClips"
@@ -123,7 +123,7 @@ exports[`should render Download Clips correctly 1`] = `
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 hlHjgV"
+        class="styles__Container-cfnpnh-0 kzDwPL"
       >
         <a
           aria-label="DeletedVods"

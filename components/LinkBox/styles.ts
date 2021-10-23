@@ -19,6 +19,11 @@ export const Container = styled.div`
     svg {
       margin: 0 0.5rem 0 0.75rem;
     }
+
+    sup {
+      font-size: 0.7rem;
+      margin-top: -0.25rem;
+    }
   }
 `;
 
