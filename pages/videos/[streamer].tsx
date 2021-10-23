@@ -142,7 +142,10 @@ const Videos = ({
           <h1>PogU</h1>
         </span>
         <SearchInput withQuality={true} />
-        <LinkBox all={true} />
+        <LinkBox home />
+        <LinkBox vods />
+        <LinkBox clips />
+        <LinkBox download />
         <VodGallery data={data.videos} quality={videoQuality} />
         <Footer />
       </Container>

@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const Home = ({ streamers }: IStreamers) => {
+const DeletedVods = ({ streamers }: IStreamers) => {
   useEffect(() => {
     ReactGA.initialize(`${process.env.NEXT_PUBLIC_GOOGLE_TRACKING}`, {
       testMode: process.env.NODE_ENV === 'test',
@@ -51,11 +51,11 @@ const Home = ({ streamers }: IStreamers) => {
   return (
     <Container>
       <AnimationContainer>
-        <h1>Twitch Sub Vod</h1>
+        <h1>Deleted Vods - PogU</h1>
         <SearchInput isDeleted={true} />
 
+        <LinkBox home />
         <LinkBox clips />
-        <LinkBox vods />
         <LinkBox download />
       </AnimationContainer>
 
@@ -81,4 +81,4 @@ const Home = ({ streamers }: IStreamers) => {
   );
 };
 
-export default Home;
+export default DeletedVods;

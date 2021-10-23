@@ -50,8 +50,8 @@ const LinkBox = ({ home, clips, vods, download, all }: LinksProps) => {
       {home && (
         <Link href="/" aria-label="Home">
           <span>
-            <FiSearch size={14} />
             Home
+            <FiExternalLink size={14} />
           </span>
         </Link>
       )}
@@ -59,8 +59,9 @@ const LinkBox = ({ home, clips, vods, download, all }: LinksProps) => {
       {clips && (
         <Link href="/deletedclips" aria-label="DeletedClips">
           <span>
-            <FiSearch size={14} />
             Search for deleted clips
+            <FiExternalLink size={14} />
+            <sup>new</sup>
           </span>
         </Link>
       )}
@@ -68,8 +69,9 @@ const LinkBox = ({ home, clips, vods, download, all }: LinksProps) => {
       {vods && (
         <Link href="/deletedvods" aria-label="DeletedVods">
           <span>
-            <FiSearch size={14} />
             Search for deleted vods
+            <FiExternalLink size={14} />
+            <sup>new</sup>
           </span>
         </Link>
       )}
@@ -77,8 +79,8 @@ const LinkBox = ({ home, clips, vods, download, all }: LinksProps) => {
       {download && (
         <Link href="/downloadclip" aria-label="DownloadClip">
           <span>
-            <FiSearch size={14} />
             Download Twitch Clips
+            <FiExternalLink size={14} />
           </span>
         </Link>
       )}

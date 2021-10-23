@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="styles__Container-cfnpnh-0 kzDwPL"
+        class="styles__Container-cfnpnh-0 cnwViB"
       >
         <a
           aria-label="Home"
@@ -14,6 +14,7 @@ Object {
           href="/"
         >
           <span>
+            Home
             <svg
               fill="none"
               height="14"
@@ -25,24 +26,24 @@ Object {
               width="14"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle
-                cx="11"
-                cy="11"
-                r="8"
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline
+                points="15 3 21 3 21 9"
               />
               <line
-                x1="21"
-                x2="16.65"
-                y1="21"
-                y2="16.65"
+                x1="10"
+                x2="21"
+                y1="14"
+                y2="3"
               />
             </svg>
-            Home
           </span>
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 kzDwPL"
+        class="styles__Container-cfnpnh-0 cnwViB"
       >
         <a
           aria-label="DeletedClips"
@@ -50,6 +51,7 @@ Object {
           href="/deletedclips"
         >
           <span>
+            Search for deleted clips
             <svg
               fill="none"
               height="14"
@@ -61,24 +63,27 @@ Object {
               width="14"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle
-                cx="11"
-                cy="11"
-                r="8"
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline
+                points="15 3 21 3 21 9"
               />
               <line
-                x1="21"
-                x2="16.65"
-                y1="21"
-                y2="16.65"
+                x1="10"
+                x2="21"
+                y1="14"
+                y2="3"
               />
             </svg>
-            Search for deleted clips
+            <sup>
+              new
+            </sup>
           </span>
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 kzDwPL"
+        class="styles__Container-cfnpnh-0 cnwViB"
       >
         <a
           aria-label="DeletedVods"
@@ -86,6 +91,7 @@ Object {
           href="/deletedvods"
         >
           <span>
+            Search for deleted vods
             <svg
               fill="none"
               height="14"
@@ -97,24 +103,27 @@ Object {
               width="14"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle
-                cx="11"
-                cy="11"
-                r="8"
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline
+                points="15 3 21 3 21 9"
               />
               <line
-                x1="21"
-                x2="16.65"
-                y1="21"
-                y2="16.65"
+                x1="10"
+                x2="21"
+                y1="14"
+                y2="3"
               />
             </svg>
-            Search for deleted vods
+            <sup>
+              new
+            </sup>
           </span>
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 kzDwPL"
+        class="styles__Container-cfnpnh-0 cnwViB"
       >
         <a
           aria-label="DownloadClip"
@@ -122,6 +131,7 @@ Object {
           href="/downloadclip"
         >
           <span>
+            Download Twitch Clips
             <svg
               fill="none"
               height="14"
@@ -133,24 +143,24 @@ Object {
               width="14"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle
-                cx="11"
-                cy="11"
-                r="8"
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline
+                points="15 3 21 3 21 9"
               />
               <line
-                x1="21"
-                x2="16.65"
-                y1="21"
-                y2="16.65"
+                x1="10"
+                x2="21"
+                y1="14"
+                y2="3"
               />
             </svg>
-            Download Twitch Clips
           </span>
         </a>
       </div>
       <div
-        class="styles__Container-cfnpnh-0 kzDwPL"
+        class="styles__Container-cfnpnh-0 cnwViB"
       >
         <a
           aria-label="Home"
@@ -295,7 +305,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="styles__Container-cfnpnh-0 kzDwPL"
+      class="styles__Container-cfnpnh-0 cnwViB"
     >
       <a
         aria-label="Home"
@@ -303,6 +313,7 @@ Object {
         href="/"
       >
         <span>
+          Home
           <svg
             fill="none"
             height="14"
@@ -314,24 +325,24 @@ Object {
             width="14"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle
-              cx="11"
-              cy="11"
-              r="8"
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <polyline
+              points="15 3 21 3 21 9"
             />
             <line
-              x1="21"
-              x2="16.65"
-              y1="21"
-              y2="16.65"
+              x1="10"
+              x2="21"
+              y1="14"
+              y2="3"
             />
           </svg>
-          Home
         </span>
       </a>
     </div>
     <div
-      class="styles__Container-cfnpnh-0 kzDwPL"
+      class="styles__Container-cfnpnh-0 cnwViB"
     >
       <a
         aria-label="DeletedClips"
@@ -339,6 +350,7 @@ Object {
         href="/deletedclips"
       >
         <span>
+          Search for deleted clips
           <svg
             fill="none"
             height="14"
@@ -350,24 +362,27 @@ Object {
             width="14"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle
-              cx="11"
-              cy="11"
-              r="8"
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <polyline
+              points="15 3 21 3 21 9"
             />
             <line
-              x1="21"
-              x2="16.65"
-              y1="21"
-              y2="16.65"
+              x1="10"
+              x2="21"
+              y1="14"
+              y2="3"
             />
           </svg>
-          Search for deleted clips
+          <sup>
+            new
+          </sup>
         </span>
       </a>
     </div>
     <div
-      class="styles__Container-cfnpnh-0 kzDwPL"
+      class="styles__Container-cfnpnh-0 cnwViB"
     >
       <a
         aria-label="DeletedVods"
@@ -375,6 +390,7 @@ Object {
         href="/deletedvods"
       >
         <span>
+          Search for deleted vods
           <svg
             fill="none"
             height="14"
@@ -386,24 +402,27 @@ Object {
             width="14"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle
-              cx="11"
-              cy="11"
-              r="8"
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <polyline
+              points="15 3 21 3 21 9"
             />
             <line
-              x1="21"
-              x2="16.65"
-              y1="21"
-              y2="16.65"
+              x1="10"
+              x2="21"
+              y1="14"
+              y2="3"
             />
           </svg>
-          Search for deleted vods
+          <sup>
+            new
+          </sup>
         </span>
       </a>
     </div>
     <div
-      class="styles__Container-cfnpnh-0 kzDwPL"
+      class="styles__Container-cfnpnh-0 cnwViB"
     >
       <a
         aria-label="DownloadClip"
@@ -411,6 +430,7 @@ Object {
         href="/downloadclip"
       >
         <span>
+          Download Twitch Clips
           <svg
             fill="none"
             height="14"
@@ -422,24 +442,24 @@ Object {
             width="14"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle
-              cx="11"
-              cy="11"
-              r="8"
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <polyline
+              points="15 3 21 3 21 9"
             />
             <line
-              x1="21"
-              x2="16.65"
-              y1="21"
-              y2="16.65"
+              x1="10"
+              x2="21"
+              y1="14"
+              y2="3"
             />
           </svg>
-          Download Twitch Clips
         </span>
       </a>
     </div>
     <div
-      class="styles__Container-cfnpnh-0 kzDwPL"
+      class="styles__Container-cfnpnh-0 cnwViB"
     >
       <a
         aria-label="Home"

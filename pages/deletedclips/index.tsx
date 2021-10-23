@@ -247,7 +247,9 @@ const DeletedClips: React.FC = () => {
           </button>
         </form>
 
-        <LinkBox home download vods />
+        <LinkBox home />
+        <LinkBox vods />
+        <LinkBox download />
 
         {loading && <LoadingModal />}
 

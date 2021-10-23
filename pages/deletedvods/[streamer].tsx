@@ -131,7 +131,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-const DeletedVods = ({ twitchData, deletedVods }: IDeletedVodsProps) => {
+const DeletedVodsStreamer = ({
+  twitchData,
+  deletedVods,
+}: IDeletedVodsProps) => {
   const [deletedVodsData, setDeletedVodsData] = useState<
     IDeletedVodsProps['deletedVods']
   >(null);
@@ -253,7 +256,9 @@ const DeletedVods = ({ twitchData, deletedVods }: IDeletedVodsProps) => {
           <h1>PogU</h1>
         </span>
         <SearchInput isDeleted={true} />
-        <LinkBox all={true} />
+        <LinkBox home />
+        <LinkBox clips />
+        <LinkBox download />
         <StreamerInformation
           displayName={twitchData.display_name}
           logo={twitchData.logo}
@@ -274,4 +279,4 @@ const DeletedVods = ({ twitchData, deletedVods }: IDeletedVodsProps) => {
   );
 };
 
-export default DeletedVods;
+export default DeletedVodsStreamer;

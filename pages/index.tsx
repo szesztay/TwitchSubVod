@@ -61,9 +61,8 @@ const Home = ({ streamers }: IStreamers) => {
       <AnimationContainer>
         <h1>Twitch Sub Vod</h1>
         <SearchInput />
-
-        <LinkBox clips />
         <LinkBox vods />
+        <LinkBox clips />
         <LinkBox download />
       </AnimationContainer>
 
