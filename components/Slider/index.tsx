@@ -25,7 +25,6 @@ const LocalSlider = ({ sliderValue, setSliderValue, domain }: ILocalSlider) => {
   };
 
   const onChange = (values: readonly number[]) => {
-    console.log(values);
     setSliderValue(values);
   };
 

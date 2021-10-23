@@ -15,9 +15,10 @@ interface AutoCompleteProps {
 
 interface Props {
   withQuality?: boolean;
+  isDeleted?: boolean;
 }
 
-const SearchInput = ({ withQuality }: Props) => {
+const SearchInput = ({ withQuality, isDeleted }: Props) => {
   const inputRef = useRef<any>();
   const {
     setVideoQuality,
@@ -46,8 +47,13 @@ const SearchInput = ({ withQuality }: Props) => {
 
   const handleSubmit = () => {
     if (username) {
-      setLoading(true);
+      if (isDeleted) {
+        location.href = `/deletedvods/${username}`;
+        return;
+      }
+
       try {
+        setLoading(true);
         setError('');
         api
           .get(`users?login=${username}`)
@@ -81,6 +87,8 @@ const SearchInput = ({ withQuality }: Props) => {
         console.warn(err);
         setLoading(false);
         setError('Something went wrong');
+      } finally {
+        setLoading(false);
       }
     } else {
       setError('Enter a streamer username');

@@ -39,7 +39,6 @@ export const searchDeletedVod = async ({
   for (const fullLink of fullLinks) {
     try {
       const data = await axios.head(fullLink);
-      console.log(data.status + ' | ' + fullLink);
       if (data.status === 200 || data.status === 304) {
         link = fullLink;
         break;
