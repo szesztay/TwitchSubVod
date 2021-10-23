@@ -252,7 +252,7 @@ const DeletedVods = ({ twitchData, deletedVods }: IDeletedVodsProps) => {
           <img src="/favicon.ico" alt="PogU.live" />
           <h1>PogU</h1>
         </span>
-        <SearchInput withQuality={true} isDeleted={true} />
+        <SearchInput isDeleted={true} />
         <LinkBox all={true} />
         <StreamerInformation
           displayName={twitchData.display_name}
