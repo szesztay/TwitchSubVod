@@ -75,6 +75,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       (stream) => stream !== null && stream !== undefined,
     );
 
+    if (!streams.length) {
+      throw new Error('No vods found');
+    }
+
     const deletedVods = await DeletedVods.findOneAndUpdate(
       { streamer: streamerObject.name },
       {
