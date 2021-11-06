@@ -11,6 +11,7 @@ import LinkBox from '@/components/LinkBox';
 import Footer from '@/components/Footer';
 import SearchInput from '@/components/SearchInput';
 import Avatar from '@/components/Avatar';
+import TwitterFeed from '@/components/TwitterFeed';
 import api from '@/utils/services/api';
 import { getMostWatchedStreamers } from '@/utils/backend/queries';
 import dbConnect from '@/utils/backend/lib/dbConnect';
@@ -80,6 +81,7 @@ const Home = ({ streamers }: IStreamers) => {
               />
             ))}
         </AvatarsGroup>
+        <TwitterFeed />
       </AvatarsGroupContainer>
 
       <Footer />

@@ -51,6 +51,19 @@ const GlobalStyle = createGlobalStyle`
       border: var(--dark-purple);
     }
   }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--light-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--purple);
+    border-radius: 8px;
+  }
 `;
 
 export default GlobalStyle;
