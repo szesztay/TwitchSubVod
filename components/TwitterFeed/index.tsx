@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './styles';
 
-const TwitterFeed = ({}) => {
+const TwitterFeed = () => {
   return (
     <S.TwitterFeedContainer>
       <a
