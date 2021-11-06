@@ -6,14 +6,14 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="styles__TwitterFeedContainer-sc-1itc93-0 eNIpFp"
+        class="styles__TwitterFeedContainer-sc-1itc93-0 brTwgL"
       >
         <a
           class="twitter-timeline"
           data-dnt="true"
           data-height="auto"
           data-theme="dark"
-          data-width="250"
+          data-width="100%"
           href="https://twitter.com/PogULive?ref_src=twsrc%5Etfw"
         >
           Tweets by PogULive
@@ -23,14 +23,14 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="styles__TwitterFeedContainer-sc-1itc93-0 eNIpFp"
+      class="styles__TwitterFeedContainer-sc-1itc93-0 brTwgL"
     >
       <a
         class="twitter-timeline"
         data-dnt="true"
         data-height="auto"
         data-theme="dark"
-        data-width="250"
+        data-width="100%"
         href="https://twitter.com/PogULive?ref_src=twsrc%5Etfw"
       >
         Tweets by PogULive

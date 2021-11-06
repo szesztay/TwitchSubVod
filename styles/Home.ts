@@ -82,6 +82,10 @@ export const AvatarsGroupContainer = styled.div`
   max-width: 1240px;
   padding: 0 1rem;
   gap: 16px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const AvatarsGroup = styled.div`

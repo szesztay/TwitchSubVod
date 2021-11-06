@@ -7,7 +7,7 @@ const TwitterFeed = ({}) => {
     <S.TwitterFeedContainer>
       <a
         className="twitter-timeline"
-        data-width="250"
+        data-width="100%"
         data-height="auto"
         data-dnt="true"
         data-theme="dark"
