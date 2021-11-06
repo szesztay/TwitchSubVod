@@ -79,13 +79,13 @@ export const AvatarsGroupContainer = styled.div`
   justify-content: center;
   margin: 0 auto;
   width: 100%;
-  max-width: 990px;
+  max-width: 1240px;
   padding: 0 1rem;
+  gap: 16px;
 `;
 
 export const AvatarsGroup = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(227px, auto));
-  grid-template-rows: repeat(auto-fit, minmax(337px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   grid-gap: 1rem;
 `;
