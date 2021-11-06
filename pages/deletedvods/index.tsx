@@ -11,6 +11,7 @@ import LinkBox from '@/components/LinkBox';
 import Footer from '@/components/Footer';
 import SearchInput from '@/components/SearchInput';
 import Avatar from '@/components/Avatar';
+import TwitterFeed from '@/components/TwitterFeed';
 import api from '@/utils/services/api';
 import getLastSearchedDeletedVods from '@/utils/backend/queries/getLastSearchedDeletedVods';
 import dbConnect from '@/utils/backend/lib/dbConnect';
@@ -74,6 +75,7 @@ const DeletedVods = ({ streamers }: IStreamers) => {
               />
             ))}
         </AvatarsGroup>
+        <TwitterFeed />
       </AvatarsGroupContainer>
 
       <Footer />
