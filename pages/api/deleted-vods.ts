@@ -18,6 +18,8 @@ interface IAllVods {
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { username, range } = req.query;
 
+  res.setHeader('Cache-Control', 'public, max-age=21600');
+
   try {
     const { data } = await axios.get(
       `${process.env.DELETED_VODS_HOST}${username}`,
