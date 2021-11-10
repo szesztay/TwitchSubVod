@@ -27,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const parsedData = JSON.parse(
       data
-        .split('<script type="text/javascript">')[2]
+        .split('<script type="text/javascript">')[3]
         .split(`\r\n        var PageInfo = `)[1]
         .split(`\r\n        var PageData = `)[0]
         .replace(/\;/g, ''),
