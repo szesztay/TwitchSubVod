@@ -92,9 +92,13 @@ const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
                 defaultValue="1"
                 onChange={(e) => setPlaybackRate(Number(e.target.value))}
               >
+                <option value="0.25">Speed 0.25x</option>
                 <option value="0.5">Speed 0.5x</option>
                 <option value="0.75">Speed 0.75x</option>
                 <option value="1">Speed 1x</option>
+                <option value="1.25">Speed 1.25x</option>
+                <option value="1.5">Speed 1.5x</option>
+                <option value="1.75">Speed 1.75x</option>
                 <option value="2">Speed 2x</option>
               </select>
 
