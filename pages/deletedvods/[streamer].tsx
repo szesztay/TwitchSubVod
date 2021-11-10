@@ -163,11 +163,23 @@ const DeletedVodsStreamer = ({
   };
 
   const handleVideo = useCallback(
-    (video: IVods) => {
+    async (video: IVods) => {
       const proxiedUrl = cors() + video.url;
-      setChosenVideo(proxiedUrl);
-      if (typeof window != 'undefined') {
-        window.scrollTo({ behavior: 'smooth', top: 340 });
+
+      try {
+        const videoHead = await axios.head(
+          proxiedUrl.replace('index-dvr.m3u8', '3.ts'),
+        );
+
+        if (videoHead.status !== 403) {
+          setChosenVideo(proxiedUrl);
+          if (typeof window != 'undefined') {
+            window.scrollTo({ behavior: 'smooth', top: 340 });
+          }
+        }
+      } catch (error) {
+        alert('Sorry, apparently this video just got deleted');
+        // todo: delete this video from db
       }
     },
     [setChosenVideo],
