@@ -127,7 +127,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       twitchData,
       deletedVods,
     },
-    revalidate: 1 * 60 * 60, // 1 hour (in seconds)
+    revalidate: 24 * 60 * 60, // 24 hour (in seconds)
   };
 };
 
