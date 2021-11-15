@@ -7,9 +7,7 @@ import axios from 'axios';
 
 import { useGlobal } from '@/stores/GlobalContext';
 import { Container, HCaptchaContainer, CustomOptions } from './styles';
-
-const proxy1 = process.env.NEXT_PUBLIC_CORS as string;
-const proxy2 = process.env.NEXT_PUBLIC_CORS_1 as string;
+import { removeCorsFromUrl } from '@/utils/removeCorsFromUrl';
 
 interface IVodModal {
   videoUrl: string;
@@ -46,10 +44,9 @@ const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
 
     const clippedPart = Math.floor(currentTime / 10);
 
-    const clippedUrl = videoUrl
-      .replace('index-dvr.m3u8', `${clippedPart}.ts`)
-      .replace(proxy1, '')
-      .replace(proxy2, '');
+    const clippedUrl = removeCorsFromUrl(
+      videoUrl.replace('index-dvr.m3u8', `${clippedPart}.ts`),
+    );
 
     const link = document.createElement('a');
     link.href = clippedUrl;
@@ -82,7 +79,7 @@ const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
             <Player
               playsInline
               poster={previewUrl || ''}
-              src={videoUrl.replace(proxy1, '').replace(proxy2, '')}
+              src={removeCorsFromUrl(videoUrl)}
             />
           </>
         ) : (
