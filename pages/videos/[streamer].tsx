@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       twitchData,
     },
-    revalidate: 24 * 60 * 60, // 24 hours (in seconds)
+    revalidate: 3 * 60 * 60, // 3 hours (in seconds)
   };
 };
 
