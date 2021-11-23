@@ -25,7 +25,20 @@ interface IDeletedVods {
 }
 
 const getDeletedStreamerVods = async (name: string): Promise<IDeletedVods> => {
-  const mostWatched = await deletedVods.find({ streamer: name });
+  const mostWatched = await deletedVods.find({ streamer: name.toLowerCase() });
+  console.log(mostWatched);
+
+  if (mostWatched.length === 0) {
+    return {
+      _id: '',
+      streamer: name,
+      displayName: name,
+      logo: '',
+      createdAt: '',
+      updatedAt: '',
+      vods: [],
+    };
+  }
 
   const sortedMostWatched = sortArray(
     mostWatched[0].vods,

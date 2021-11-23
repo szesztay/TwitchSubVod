@@ -82,9 +82,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const deletedVods = await DeletedVods.findOneAndUpdate(
-      { streamer: streamerObject.name },
+      { streamer: streamerObject.name.toLowerCase() },
       {
-        streamer: streamerObject.name,
+        streamer: streamerObject.name.toLowerCase(),
         displayName: streamerObject.displayName,
         logo: streamerObject.logo,
         $addToSet: {
