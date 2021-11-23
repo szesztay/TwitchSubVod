@@ -26,7 +26,6 @@ interface IDeletedVods {
 
 const getDeletedStreamerVods = async (name: string): Promise<IDeletedVods> => {
   const mostWatched = await deletedVods.find({ streamer: name.toLowerCase() });
-  console.log(mostWatched);
 
   if (mostWatched.length === 0) {
     return {
