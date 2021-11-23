@@ -15,7 +15,7 @@ const PlayedGame = new mongoose.Schema(
     },
   },
   {
-    _id: true,
+    _id: false,
     nullable: true,
   },
 );
