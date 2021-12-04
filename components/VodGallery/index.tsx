@@ -112,7 +112,7 @@ const VodGallery = ({ data }: any) => {
       }
     } catch (err) {
       setError(true);
-      throw new Error(err);
+      // throw new Error(err);
     }
 
     window.scrollTo({ behavior: 'smooth', top: 340 });
@@ -143,32 +143,51 @@ const VodGallery = ({ data }: any) => {
     [offset, data],
   );
 
+  const Ad = () => {
+    return (
+      <>
+        <div id="amzn-assoc-ad-20a26e57-ced1-48e4-ad19-235a89a52458"></div>
+        <script
+          async
+          src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=20a26e57-ced1-48e4-ad19-235a89a52458"
+        ></script>
+      </>
+    );
+  };
+
   const renderVideos = useMemo(() => {
-    return videos.map((result: ResultProps) => {
+    return videos.map((result: ResultProps, index: number) => {
       return (
-        <div key={result._id} title={result.title} className="stream">
-          <button type="button" onClick={() => handleVideo(result)}>
-            <div>
-              <Image
-                url={result.preview.large}
-                animated={result.animated_preview_url}
-              >
-                <span>{timeToHMS(result.length)}</span>
-              </Image>
-            </div>
-            <strong>{result.title}</strong>
-            <span>
-              <p>Views: {formatNumber(result.views)}</p>
-              <p>{new Date(result.recorded_at).toLocaleDateString()}</p>
-            </span>
-          </button>
-        </div>
+        <>
+          {/* show <Ad /> component when index is a multiple of 3 */}
+          {/* {console.log(index % 3 === 0)} */}
+          {index % 3 === 0 && <Ad />}
+
+          <div key={result._id} title={result.title} className="stream">
+            <button type="button" onClick={() => handleVideo(result)}>
+              <div>
+                <Image
+                  url={result.preview.large}
+                  animated={result.animated_preview_url}
+                >
+                  <span>{timeToHMS(result.length)}</span>
+                </Image>
+              </div>
+              <strong>{result.title}</strong>
+              <span>
+                <p>Views: {formatNumber(result.views)}</p>
+                <p>{new Date(result.recorded_at).toLocaleDateString()}</p>
+              </span>
+            </button>
+          </div>
+        </>
       );
     });
   }, [videos, videoQuality]);
 
   return (
     <>
+      <Ad />
       {data && !error && (
         <Link href={streamerInformation.url} prefetch={false}>
           <a target="_blank" rel="noopener noreferrer">
