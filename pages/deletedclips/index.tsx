@@ -247,6 +247,19 @@ const DeletedClips: React.FC = () => {
           </button>
         </form>
 
+        <a
+          href="https://ko-fi.com/pogulive"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ margin: '1rem 0 2rem' }}
+        >
+          <img
+            className="kofi-img"
+            src="https://cdn.ko-fi.com/cdn/kofi5.png?v=2"
+            alt="Buy Me a Coffee at ko-fi.com"
+          />
+        </a>
+
         <LinkBox home />
         <LinkBox vods />
         <LinkBox download />
