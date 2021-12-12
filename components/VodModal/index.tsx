@@ -20,6 +20,7 @@ const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
 
   const { videoQuality } = useGlobal();
   const [showHCaptcha, setShowHCaptcha] = useState(true);
+  const [hasAdBlockOn, setHasAdBlockOn] = useState(false);
 
   const handleVerificationSuccess = (token: string) => {
     setShowHCaptcha(false);
@@ -63,17 +64,80 @@ const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
     return navigator.userAgent.toLowerCase().indexOf('safari/') > -1;
   };
 
+  const renderCaptcha = useMemo(() => {
+    if (!showHCaptcha) {
+      return null;
+    }
+
+    setTimeout(() => {
+      try {
+        // @ts-ignore
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        setHasAdBlockOn(true);
+        console.log(e);
+      }
+    }, 1000);
+
+    return (
+      <HCaptchaContainer isVisible={showHCaptcha}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          {hasAdBlockOn ? (
+            <a
+              href="https://ko-fi.com/pogulive"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                marginBottom: '1rem',
+              }}
+            >
+              Help me keep the servers running
+              <img
+                className="kofi-img"
+                width="230px"
+                src="https://cdn.ko-fi.com/cdn/kofi5.png?v=2"
+                alt="Buy Me a Coffee at ko-fi.com"
+              />
+            </a>
+          ) : (
+            <ins
+              className="adsbygoogle"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginBottom: '30px',
+                width: '100%',
+              }}
+              data-adtest={
+                process.env.NODE_ENV === 'development' ? 'on' : 'off'
+              }
+              data-ad-client="ca-pub-8414071548156466"
+              data-ad-slot="7024046142"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
+          )}
+        </div>
+        <HCaptcha
+          sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_TOKEN || ''}
+          onVerify={(token: string) => handleVerificationSuccess(token)}
+          tabIndex={4}
+        />
+      </HCaptchaContainer>
+    );
+  }, [showHCaptcha, hasAdBlockOn]);
+
   const renderVodModal = useMemo(() => {
     return (
       <>
-        <HCaptchaContainer isVisible={showHCaptcha}>
-          <HCaptcha
-            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_TOKEN || ''}
-            onVerify={(token: string) => handleVerificationSuccess(token)}
-            tabIndex={4}
-          />
-        </HCaptchaContainer>
-
         {showCustomPlayer ? (
           <>
             <Player
@@ -145,7 +209,7 @@ const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
     downloadClip,
   ]);
 
-  return <Container>{renderVodModal}</Container>;
+  return <Container>{showHCaptcha ? renderCaptcha : renderVodModal}</Container>;
 };
 
 export default VodModal;
