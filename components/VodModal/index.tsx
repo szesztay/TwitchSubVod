@@ -67,6 +67,15 @@ const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
     return (
       <>
         <HCaptchaContainer isVisible={showHCaptcha}>
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'block' }}
+            data-adtest={process.env.NODE_ENV === 'development' ? 'on' : 'off'}
+            data-ad-client="ca-pub-8414071548156466"
+            data-ad-slot="7024046142"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
           <HCaptcha
             sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_TOKEN || ''}
             onVerify={(token: string) => handleVerificationSuccess(token)}
