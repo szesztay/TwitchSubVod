@@ -115,7 +115,7 @@ const VodGallery = ({ data }: any) => {
       throw new Error(err);
     }
 
-    window.scrollTo({ behavior: 'smooth', top: 340 });
+    window.scrollTo({ behavior: 'smooth', top: 380 });
   };
 
   const handlePagination = useCallback(
@@ -132,7 +132,7 @@ const VodGallery = ({ data }: any) => {
             setTotalVideos(channelResponse.data._total);
             setVideos(channelResponse.data.videos);
             next ? setOffset(offset + 9) : setOffset(offset - 9);
-            window.scrollTo({ behavior: 'smooth', top: 340 });
+            window.scrollTo({ behavior: 'smooth', top: 380 });
           }
         })
         .catch((err) => {
