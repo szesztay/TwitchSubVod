@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -63,6 +63,15 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-thumb {
     background: var(--purple);
     border-radius: 8px;
+  }
+
+  ${
+    process.env.NODE_ENV === 'development' &&
+    css`
+      ins {
+        border: 1px solid red !important;
+      }
+    `
   }
 `;
 

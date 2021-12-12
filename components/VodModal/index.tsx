@@ -64,23 +64,34 @@ const VodModal = ({ videoUrl, previewUrl }: IVodModal) => {
   };
 
   const renderVodModal = useMemo(() => {
+    setTimeout(() => {
+      try {
+        // @ts-ignore
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.log(e);
+      }
+    }, 1000);
+
     return (
       <>
         <HCaptchaContainer isVisible={showHCaptcha}>
+          <HCaptcha
+            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_TOKEN || ''}
+            onVerify={(token: string) => handleVerificationSuccess(token)}
+            tabIndex={4}
+          />
           <ins
             className="adsbygoogle"
-            style={{ display: 'block' }}
+            style={{
+              display: 'block',
+            }}
             data-adtest={process.env.NODE_ENV === 'development' ? 'on' : 'off'}
             data-ad-client="ca-pub-8414071548156466"
             data-ad-slot="7024046142"
             data-ad-format="auto"
             data-full-width-responsive="true"
           ></ins>
-          <HCaptcha
-            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_TOKEN || ''}
-            onVerify={(token: string) => handleVerificationSuccess(token)}
-            tabIndex={4}
-          />
         </HCaptchaContainer>
 
         {showCustomPlayer ? (
