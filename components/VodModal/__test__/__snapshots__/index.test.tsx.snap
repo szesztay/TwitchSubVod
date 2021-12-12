@@ -11,6 +11,7 @@ Object {
         <div
           class="styles__HCaptchaContainer-xygqpp-1 iyYtEI"
         >
+          <div />
           <ins
             class="adsbygoogle"
             data-ad-client="ca-pub-8414071548156466"
@@ -20,7 +21,6 @@ Object {
             data-full-width-responsive="true"
             style="display: block;"
           />
-          <div />
         </div>
         <div
           class="styles__CustomOptions-xygqpp-2 kqLSmC"
@@ -90,6 +90,7 @@ Object {
       <div
         class="styles__HCaptchaContainer-xygqpp-1 iyYtEI"
       >
+        <div />
         <ins
           class="adsbygoogle"
           data-ad-client="ca-pub-8414071548156466"
@@ -99,7 +100,6 @@ Object {
           data-full-width-responsive="true"
           style="display: block;"
         />
-        <div />
       </div>
       <div
         class="styles__CustomOptions-xygqpp-2 kqLSmC"
