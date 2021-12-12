@@ -112,6 +112,18 @@ exports[`should render Deleted Clips correctly 1`] = `
           Search
         </button>
       </form>
+      <a
+        href="https://ko-fi.com/pogulive"
+        rel="noopener noreferrer"
+        style="margin: 1rem 0px 2rem;"
+        target="_blank"
+      >
+        <img
+          alt="Buy Me a Coffee at ko-fi.com"
+          class="kofi-img"
+          src="https://cdn.ko-fi.com/cdn/kofi5.png?v=2"
+        />
+      </a>
       <div
         class="styles__Container-cfnpnh-0 cnwViB"
       >
