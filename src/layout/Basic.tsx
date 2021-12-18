@@ -1,23 +1,24 @@
 import { createGlobalStyle } from 'styled-components'
+import { colors, breakpoints } from './theme'
 
-const defaultTheme = {}
+const defaultTheme = {
+  colors,
+  breakpoints,
+}
 
 export const lightTheme = {
-  body: '#FFF',
-  text: '#363537',
-  background: '#363537',
+  ...defaultTheme,
 }
 
 export const darkTheme = {
-  body: '#363537',
-  text: '#FAFAFA',
-  background: '#999',
+  ...defaultTheme,
 }
 
 export const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 16px;
+    background-color: ${({ theme }) => theme.colors.grey900};
   }
 
   *, *:before, *:after {
