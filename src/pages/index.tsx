@@ -9,6 +9,10 @@ const Container = styled.div`
   background: ${({ theme }) => theme.colors.grey900};
   width: 100%;
   height: 100vh;
+
+  ${({ theme }) => theme.breakpoints.down('sm')} {
+    background: ${({ theme }) => theme.colors.pink900};
+  }
 `
 
 const Home: NextPage = () => {
