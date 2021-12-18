@@ -1,0 +1,18 @@
+export const colors = {
+  pink900: '#A70050',
+  pink800: '#BF005F',
+  pink700: '#D70070',
+  pink600: '#F60998',
+  blue900: '#05042F',
+  blue800: '#050C3C',
+  blue700: '#031248',
+  blue600: '#021B55',
+  grey900: '#1D1D1D',
+  grey800: '#2F2F2F',
+  grey700: '#4D4D4D',
+  grey600: '#626262',
+  grey500: '#9F9F9F',
+  grey400: '#E0E0E0',
+  black: '#000000',
+  white: '#FFFFFF',
+}
