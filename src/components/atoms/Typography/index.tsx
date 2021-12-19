@@ -11,7 +11,11 @@ const Typography = ({
   ...props
 }: TypographyPropsComponent & React.HTMLAttributes<HTMLHeadingElement>) => {
   return (
-    <S.TypographyContainer variant={variant} {...props}>
+    <S.TypographyContainer
+      variant={variant}
+      color={props.color || '#ffffff'}
+      {...props}
+    >
       {children}
     </S.TypographyContainer>
   )
