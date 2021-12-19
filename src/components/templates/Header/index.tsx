@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { FiMenu } from 'react-icons/fi'
-import Icon from '../atoms/Icon'
+import Icon from '../../atoms/Icon'
 import * as S from './styles'
 
 const Header = () => {

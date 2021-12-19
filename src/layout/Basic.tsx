@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import Header from '~/components/Header'
+import Header from '~/components/templates/Header'
 
 export const GlobalStyles = createGlobalStyle`
   html {
