@@ -7,13 +7,18 @@ interface TypographyPropsComponent extends TypographyProps {
 
 const Typography = ({
   variant,
+  color,
+  maxWidth,
+  lineLimit,
   children,
   ...props
 }: TypographyPropsComponent & React.HTMLAttributes<HTMLHeadingElement>) => {
   return (
     <S.TypographyContainer
       variant={variant}
-      color={props.color || '#ffffff'}
+      color={color || '#ffffff'}
+      maxWidth={maxWidth}
+      lineLimit={lineLimit}
       {...props}
     >
       {children}

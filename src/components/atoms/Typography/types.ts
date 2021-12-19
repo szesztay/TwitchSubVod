@@ -1,5 +1,8 @@
 export interface TypographyProps {
   color?: string
+  maxWidth?: string
+  lineLimit?: number
+  cursor?: string
   variant:
     | 'h1'
     | 'h2'
