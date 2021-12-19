@@ -7,4 +7,5 @@ export const BoxContainer = styled.div<BoxProps>`
   justify-content: ${({ justifyContent }) => justifyContent};
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => gap};
+  max-width: 100%;
 `

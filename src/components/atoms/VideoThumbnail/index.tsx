@@ -7,7 +7,14 @@ interface VideoThumbnailProps {
 }
 
 const VideoThumbnail = ({ src, title, width }: VideoThumbnailProps) => {
-  return <S.VideoThumbnailImage src={src} alt={title} thumbnailWidth={width} />
+  return (
+    <S.VideoThumbnailImage
+      src={src}
+      alt={title}
+      title={title}
+      thumbnailWidth={width}
+    />
+  )
 }
 
 export default VideoThumbnail
