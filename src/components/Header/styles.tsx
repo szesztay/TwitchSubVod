@@ -32,18 +32,3 @@ export const HeaderArea = styled.div<{ gap?: number }>`
     color: ${({ theme }) => theme.colors.white};
   }
 `
-
-export const HeaderButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: transparent;
-  border: none;
-  cursor: pointer;
-
-  :focus,
-  :focus-within {
-    outline: -webkit-focus-ring-color auto 5px;
-  }
-`
