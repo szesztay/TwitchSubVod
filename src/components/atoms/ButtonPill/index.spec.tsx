@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { darkTheme } from '~/layout/theme'
-import Icon from '.'
-import { FaTwitch } from 'react-icons/fa'
 import ButtonPill from '.'
 import { RiFeedbackFill } from 'react-icons/ri'
 
