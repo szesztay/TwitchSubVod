@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     background-color: ${({ theme }) => theme.colors.grey900};
   }
 
@@ -25,6 +26,11 @@ export const GlobalStyles = createGlobalStyle`
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  ::selection {
+    background: ${({ theme }) => theme.colors.pink900};
+    color: ${({ theme }) => theme.colors.white};
   }
 `
 
