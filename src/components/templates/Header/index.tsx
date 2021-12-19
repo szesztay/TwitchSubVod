@@ -10,10 +10,11 @@ const Header = () => {
         <S.HeaderArea gap={30}>
           <Icon
             icon={<FiMenu />}
+            title="Open menu"
+            isButton
             onClick={() => {
               alert('Open menu')
             }}
-            title="Open menu"
           />
           <Icon
             icon={
