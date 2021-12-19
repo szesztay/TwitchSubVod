@@ -4,7 +4,7 @@ import { darkTheme } from '~/layout/theme'
 import Icon from '.'
 import { FaTwitch } from 'react-icons/fa'
 
-describe('Header component', () => {
+describe('Icon component', () => {
   it('should render correctly', () => {
     const fn = jest.fn()
 
