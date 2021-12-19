@@ -1,5 +1,8 @@
 import Image from 'next/image'
 import { FiMenu } from 'react-icons/fi'
+import { IoNotificationsSharp, IoPersonSharp } from 'react-icons/io5'
+import { RiFeedbackFill } from 'react-icons/ri'
+import ButtonPill from '~/components/atoms/ButtonPill'
 import Icon from '../../atoms/Icon'
 import * as S from './styles'
 
@@ -32,7 +35,33 @@ const Header = () => {
           />
         </S.HeaderArea>
         <S.HeaderArea>Search bar</S.HeaderArea>
-        <S.HeaderArea>Feedback + Profile + Notification</S.HeaderArea>
+        <S.HeaderArea gap={8}>
+          <ButtonPill
+            icon={<RiFeedbackFill />}
+            iconPosition="right"
+            text="Feedback"
+            title="Send feedback"
+            onClick={() => {
+              alert('Send feedback')
+            }}
+          />
+          <Icon
+            icon={<IoPersonSharp />}
+            title="Profile"
+            isButton
+            onClick={() => {
+              alert('redirect to /profile')
+            }}
+          />
+          <Icon
+            icon={<IoNotificationsSharp />}
+            title="Profile"
+            isButton
+            onClick={() => {
+              alert('Open notification')
+            }}
+          />
+        </S.HeaderArea>
       </S.HeaderContainer>
     </S.HeaderWrapper>
   )
