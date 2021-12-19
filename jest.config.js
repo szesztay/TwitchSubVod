@@ -5,4 +5,10 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/layout/**',
+    '!src/pages/**',
+    '!src/custom.d.ts',
+  ],
 }
