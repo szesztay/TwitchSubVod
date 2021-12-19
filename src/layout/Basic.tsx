@@ -24,11 +24,6 @@ export const GlobalStyles = createGlobalStyle`
     list-style: none;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
   ::selection {
     background: ${({ theme }) => theme.colors.pink900};
     color: ${({ theme }) => theme.colors.white};
