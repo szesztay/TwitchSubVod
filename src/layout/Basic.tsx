@@ -1,18 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { colors, breakpoints } from './theme'
-
-const defaultTheme = {
-  colors,
-  breakpoints,
-}
-
-export const lightTheme = {
-  ...defaultTheme,
-}
-
-export const darkTheme = {
-  ...defaultTheme,
-}
+import Header from '~/components/Header'
 
 export const GlobalStyles = createGlobalStyle`
   html {
@@ -45,6 +32,7 @@ const BasicLayout = ({ children }: { children: any }) => {
   return (
     <>
       <GlobalStyles />
+      <Header />
       {children}
     </>
   )
