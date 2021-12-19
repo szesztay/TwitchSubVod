@@ -11,10 +11,11 @@ const sizes: Sizes = {
   sm: 576,
   md: 768,
   lg: 992,
-  xl: 1200,
+  xl: 1440,
 }
 
 export const breakpoints = {
+  ...sizes,
   down: (size: keyof Sizes) => `@media (max-width: ${sizes[size]}px)`,
   up: (size: keyof Sizes) => `@media (min-width: ${sizes[size]}px)`,
 }

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import type { AppProps } from 'next/app'
-import BasicLayout, { darkTheme, lightTheme } from '~/layout/Basic'
+import BasicLayout from '~/layout/Basic'
+import { darkTheme, lightTheme } from '~/layout/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState('dark')
