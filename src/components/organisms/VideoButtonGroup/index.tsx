@@ -15,9 +15,9 @@ interface VideoButtonGroupProps {
 const VideoButtonGroup = ({ videos }: VideoButtonGroupProps) => {
   return (
     <S.VideoButtonGroupContainer>
-      {videos.map((video, index) => (
+      {videos.map((video) => (
         <VideoButton
-          key={index}
+          key={video.vodInformation.id}
           streamerInformation={video.streamerInformation}
           vodInformation={video.vodInformation}
         />

@@ -33,11 +33,15 @@ const mockedVodInformation: VodInformation = {
   duration: 434332,
   viewCount: 30434123,
   date: '2020-12-19T00:00:00+00:00',
+  id: '0',
 }
 
 const videos = Array.from({ length: 10 }).map((_, index) => ({
   streamerInformation: mockedStreamerInformation,
-  vodInformation: mockedVodInformation,
+  vodInformation: {
+    ...mockedVodInformation,
+    id: index.toString(),
+  },
 }))
 
 const Home: NextPage = () => {

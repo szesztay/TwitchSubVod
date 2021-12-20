@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const VideoButtonContainer = styled.div`
+export const VideoButtonContainer = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
