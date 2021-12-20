@@ -20,7 +20,11 @@ const VideoButton = ({
 }: VideoButtonProps) => {
   return (
     <Link href="/video/[vod]" as={`/video/${vodInformation.id}`} passHref>
-      <S.VideoButtonContainer isMinimal={isMinimal} tabIndex={0}>
+      <S.VideoButtonContainer
+        isMinimal={isMinimal}
+        tabIndex={0}
+        data-testid={vodInformation.id}
+      >
         <VideoThumbnail
           src={vodInformation.thumbnail}
           title={vodInformation.title}

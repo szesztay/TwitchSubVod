@@ -20,11 +20,12 @@ const mockedVodInformation: VodInformation = {
   duration: 434332,
   viewCount: 30434123,
   date: '2020-12-19T00:00:00+00:00',
+  id: '44818023629',
 }
 
 describe('VideoButton component', () => {
   it('should render correctly', () => {
-    const { container } = render(
+    render(
       <ThemeProvider theme={darkTheme}>
         <VideoButton
           streamerInformation={mockedStreamerInformation}
@@ -33,10 +34,53 @@ describe('VideoButton component', () => {
       </ThemeProvider>,
     )
 
+    const container = screen.getByTestId('44818023629')
+
     expect(container).toBeInTheDocument()
-    // expect image to have correct src
     expect(
       screen.getByTitle(mockedStreamerInformation.displayName),
     ).toHaveAttribute('src', mockedStreamerInformation.logo)
+    expect(container).toHaveAttribute('href', '/video/44818023629')
+    expect(container).toHaveStyleRule('display', 'flex')
+  })
+
+  it('should render correctly without an avatar', () => {
+    render(
+      <ThemeProvider theme={darkTheme}>
+        <VideoButton
+          streamerInformation={mockedStreamerInformation}
+          vodInformation={mockedVodInformation}
+          noAvatar
+        />
+      </ThemeProvider>,
+    )
+
+    const container = screen.getByTestId('44818023629')
+
+    expect(container).toBeInTheDocument()
+    expect(
+      screen.queryByTitle(mockedStreamerInformation.displayName),
+    ).not.toBeInTheDocument()
+    expect(container).toHaveAttribute('href', '/video/44818023629')
+    expect(container).toHaveStyleRule('display', 'flex')
+  })
+
+  it('should render correctly minimal version', () => {
+    render(
+      <ThemeProvider theme={darkTheme}>
+        <VideoButton
+          streamerInformation={mockedStreamerInformation}
+          vodInformation={mockedVodInformation}
+          noAvatar
+          isMinimal
+        />
+      </ThemeProvider>,
+    )
+
+    const container = screen.getByTestId('44818023629')
+
+    expect(container).toBeInTheDocument()
+    expect(container).toHaveAttribute('href', '/video/44818023629')
+    expect(container).toHaveStyleRule('display', 'grid')
   })
 })
