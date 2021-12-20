@@ -10,5 +10,7 @@ module.exports = {
     '!src/layout/**',
     '!src/pages/**',
     '!src/custom.d.ts',
+    '!src/**/types.ts',
+    '!src/@types/**',
   ],
 }
