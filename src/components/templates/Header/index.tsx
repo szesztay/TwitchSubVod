@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { FiMenu } from 'react-icons/fi'
 import { IoNotificationsSharp, IoPersonSharp, IoSearch } from 'react-icons/io5'
 import { RiFeedbackFill } from 'react-icons/ri'
@@ -20,20 +21,21 @@ const Header = () => {
               alert('Open menu')
             }}
           />
-          <Icon
-            icon={
-              <Image
-                src="/logo/white-with-icon-beta.svg"
-                width={106}
-                height={23}
-                aria-label="pogu.live"
-              />
-            }
-            onClick={() => {
-              alert('redirect to /')
-            }}
-            title="pogu.live"
-          />
+          <Link href="/" as={`/`} passHref>
+            <Icon
+              icon={
+                <Image
+                  src="/logo/white-with-icon-beta.svg"
+                  width={106}
+                  height={23}
+                  aria-label="pogu.live"
+                />
+              }
+              title="pogu.live"
+              as="a"
+              tabIndex={0}
+            />
+          </Link>
         </S.HeaderArea>
         <S.HeaderArea flexGrow={1}>
           <Input
