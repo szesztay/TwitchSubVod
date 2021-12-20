@@ -1,0 +1,29 @@
+import { StreamerInformation } from '~/@types/StreamerInformation'
+import { VodInformation } from '~/@types/VodInformation'
+import VideoButton from '~/components/molecules/VideoButton'
+import * as S from './styles'
+
+interface IVideos {
+  streamerInformation: StreamerInformation
+  vodInformation: VodInformation
+}
+
+interface VideoButtonGroupProps {
+  videos: IVideos[]
+}
+
+const VideoButtonGroup = ({ videos }: VideoButtonGroupProps) => {
+  return (
+    <S.VideoButtonGroupContainer>
+      {videos.map((video, index) => (
+        <VideoButton
+          key={index}
+          streamerInformation={video.streamerInformation}
+          vodInformation={video.vodInformation}
+        />
+      ))}
+    </S.VideoButtonGroupContainer>
+  )
+}
+
+export default VideoButtonGroup

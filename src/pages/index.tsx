@@ -2,20 +2,20 @@ import type { NextPage } from 'next'
 import styled from 'styled-components'
 import { StreamerInformation } from '~/@types/StreamerInformation'
 import { VodInformation } from '~/@types/VodInformation'
-import VideoThumbnail from '~/components/atoms/VideoThumbnail'
-import VideoButton from '~/components/molecules/VideoButton'
+import VideoButtonGroup from '~/components/organisms/VideoButtonGroup'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 24px;
   background: ${({ theme }) => theme.colors.grey900};
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
-  ${({ theme }) => theme.breakpoints.down('sm')} {
-    background: ${({ theme }) => theme.colors.pink900};
+  ${({ theme }) => theme.breakpoints.down('md')} {
+    padding: 8px;
   }
 `
 
@@ -35,21 +35,15 @@ const mockedVodInformation: VodInformation = {
   date: '2020-12-19T00:00:00+00:00',
 }
 
+const videos = Array.from({ length: 10 }).map((_, index) => ({
+  streamerInformation: mockedStreamerInformation,
+  vodInformation: mockedVodInformation,
+}))
+
 const Home: NextPage = () => {
   return (
     <Container>
-      <VideoButton
-        streamerInformation={mockedStreamerInformation}
-        vodInformation={mockedVodInformation}
-      />
-      <VideoButton
-        streamerInformation={mockedStreamerInformation}
-        vodInformation={mockedVodInformation}
-      />
-      <VideoButton
-        streamerInformation={mockedStreamerInformation}
-        vodInformation={mockedVodInformation}
-      />
+      <VideoButtonGroup videos={videos} />
     </Container>
   )
 }

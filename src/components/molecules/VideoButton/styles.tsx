@@ -7,6 +7,5 @@ export const VideoButtonContainer = styled.div`
   justify-content: center;
   gap: 8px;
 
-  width: 320px; /* remove this when we have a grid system */
   cursor: pointer;
 `
