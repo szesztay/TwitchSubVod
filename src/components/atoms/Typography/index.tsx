@@ -3,6 +3,7 @@ import { TypographyProps } from './types'
 
 interface TypographyPropsComponent extends TypographyProps {
   children: React.ReactNode
+  as?: any
 }
 
 const Typography = ({
@@ -11,6 +12,7 @@ const Typography = ({
   maxWidth,
   lineLimit,
   children,
+  as,
   ...props
 }: TypographyPropsComponent & React.HTMLAttributes<HTMLHeadingElement>) => {
   return (
@@ -19,6 +21,7 @@ const Typography = ({
       color={color || '#ffffff'}
       maxWidth={maxWidth}
       lineLimit={lineLimit}
+      as={as || 'span'}
       {...props}
     >
       {children}
