@@ -8,4 +8,7 @@ export const VideoButtonContainer = styled.a`
   gap: 8px;
 
   cursor: pointer;
+
+  text-decoration: none;
+  color: inherit;
 `
