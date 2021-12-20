@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 
-export const VideoButtonGroupContainer = styled.div`
+export const VideoButtonGroupContainer = styled.div<{ minVideoWidth?: string }>`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(${({ minVideoWidth }) => minVideoWidth || '320px'}, 1fr)
+  );
   grid-gap: 16px;
   margin-bottom: 16px;
   width: 100%;

@@ -8,19 +8,19 @@ import * as S from './styles'
 interface VideoButtonProps {
   streamerInformation: StreamerInformation
   vodInformation: VodInformation
+  noAvatar?: boolean
+  isMinimal?: boolean
 }
 
 const VideoButton = ({
   streamerInformation,
   vodInformation,
+  noAvatar,
+  isMinimal,
 }: VideoButtonProps) => {
   return (
-    <Link
-      href="/videos/[streamerName]?vod=[vod]"
-      as={`/videos/${streamerInformation.name}?vod=${vodInformation.id}`}
-      passHref
-    >
-      <S.VideoButtonContainer>
+    <Link href="/video/[vod]" as={`/video/${vodInformation.id}`} passHref>
+      <S.VideoButtonContainer isMinimal={isMinimal}>
         <VideoThumbnail
           src={vodInformation.thumbnail}
           title={vodInformation.title}
@@ -29,6 +29,8 @@ const VideoButton = ({
         <StreamDescription
           streamerInformation={streamerInformation}
           vodInformation={vodInformation}
+          noAvatar={noAvatar}
+          lineLimit={isMinimal ? 2 : 3}
         />
       </S.VideoButtonContainer>
     </Link>

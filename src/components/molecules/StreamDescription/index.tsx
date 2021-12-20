@@ -12,6 +12,7 @@ interface StreamDescriptionProps {
   vodInformation: VodInformation
   avatarWidth?: string
   noAvatar?: boolean
+  lineLimit?: number
 }
 
 const StreamDescription = ({
@@ -19,6 +20,7 @@ const StreamDescription = ({
   vodInformation,
   avatarWidth,
   noAvatar,
+  lineLimit,
 }: StreamDescriptionProps) => {
   return (
     <Box alignItems="flex-start" justifyContent="space-between" gap="9px">
@@ -33,17 +35,24 @@ const StreamDescription = ({
       )}
 
       <Box direction="column" gap={'2px'}>
-        <Typography variant="h6" lineLimit={3} title={vodInformation.title}>
+        <Typography
+          variant="h6"
+          lineLimit={lineLimit || 3}
+          title={vodInformation.title}
+          className="stream-description-title"
+        >
           {vodInformation.title}
         </Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" className="stream-description-name">
           {streamerInformation.displayName}
         </Typography>
         <Box>
-          <Typography variant="body2">
+          <Typography variant="body2" className="stream-description-views">
             {vodInformation.viewCount} views
           </Typography>
-          <Typography variant="body2">{vodInformation.date}</Typography>
+          <Typography variant="body2" className="stream-description-date">
+            {vodInformation.date}
+          </Typography>
         </Box>
       </Box>
     </Box>

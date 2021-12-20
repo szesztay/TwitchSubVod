@@ -10,16 +10,24 @@ interface IVideos {
 
 interface VideoButtonGroupProps {
   videos: IVideos[]
+  minVideoWidth?: string
+  isMinimal?: boolean
 }
 
-const VideoButtonGroup = ({ videos }: VideoButtonGroupProps) => {
+const VideoButtonGroup = ({
+  videos,
+  minVideoWidth,
+  isMinimal,
+}: VideoButtonGroupProps) => {
   return (
-    <S.VideoButtonGroupContainer>
+    <S.VideoButtonGroupContainer minVideoWidth={minVideoWidth}>
       {videos.map((video) => (
         <VideoButton
           key={video.vodInformation.id}
           streamerInformation={video.streamerInformation}
           vodInformation={video.vodInformation}
+          noAvatar={isMinimal}
+          isMinimal={isMinimal}
         />
       ))}
     </S.VideoButtonGroupContainer>
