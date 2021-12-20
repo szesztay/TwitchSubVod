@@ -1,13 +1,13 @@
 import { StreamerInformation } from '~/@types/StreamerInformation'
 import { VodInformation } from '~/@types/VodInformation'
 
-const mockedStreamerInformation: StreamerInformation = {
+export const mockedStreamerInformation: StreamerInformation = {
   displayName: 'xQcOw',
   name: 'xqcow',
   logo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/xqcow-profile_image-9298dca608632101-150x150.jpeg',
 }
 
-const mockedVodInformation: VodInformation = {
+export const mockedVodInformation: VodInformation = {
   title:
     'BIG LONG CLASSIC STREAM (MASTERCHEF FINALE OMG) AND FIVE NIGHTS AT FREDDYS SECURITY BREACH AT MIDNIGHT!!!!&*^&*^$&*^*&^@*&$^#@*&($^@#&*^r*&@',
   thumbnail:

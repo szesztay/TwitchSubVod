@@ -1,9 +1,15 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Box from '~/components/atoms/Box'
+import Button from '~/components/atoms/Button'
+import StreamDescription from '~/components/molecules/StreamDescription'
 import VideoButtonGroup from '~/components/templates/VideoButtonGroup'
 import * as S from './styles'
-import { videos } from './_mockedData'
+import {
+  mockedStreamerInformation,
+  mockedVodInformation,
+  videos,
+} from './_mockedData'
 
 const Video: NextPage = () => {
   const router = useRouter()
@@ -12,10 +18,55 @@ const Video: NextPage = () => {
 
   return (
     <S.Container>
-      <Box direction="column">
+      <Box direction="column" gap="64px">
+        <Box direction="column" gap="16px">
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              height: '100%',
+              paddingTop: '56.25%',
+              background: '#000',
+              borderRadius: '8px',
+            }}
+          />
+          <Box gap="16px">
+            <StreamDescription
+              streamerInformation={mockedStreamerInformation}
+              vodInformation={mockedVodInformation}
+              lineLimit={1}
+              avatarWidth="64px"
+            />
+            <Box gap="8px">
+              <Button variant="secondary" text="Follow" />
+              <Button variant="primary" text="Download" />
+            </Box>
+          </Box>
+        </Box>
         <VideoButtonGroup videos={videos} minVideoWidth="200px" />
       </Box>
       <Box direction="column">
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            height: '250px',
+            paddingTop: '56.25%',
+            background: '#000',
+            borderRadius: '8px',
+            marginBottom: '8px',
+          }}
+        />
+        <VideoButtonGroup
+          videos={videos}
+          minVideoWidth="300px"
+          isMinimal={true}
+        />
+        <VideoButtonGroup
+          videos={videos}
+          minVideoWidth="300px"
+          isMinimal={true}
+        />
         <VideoButtonGroup
           videos={videos}
           minVideoWidth="300px"
