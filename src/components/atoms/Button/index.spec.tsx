@@ -57,6 +57,26 @@ describe('Button component', () => {
     expect(button).toHaveStyleRule('gap', '0.5rem')
   })
 
+  it('should render correctly with icon on the right', () => {
+    render(
+      <ThemeProvider theme={darkTheme}>
+        <Button
+          text="test"
+          icon={<FiActivity aria-label="Activity" />}
+          iconPosition="right"
+          aria-label="test"
+        />
+      </ThemeProvider>,
+    )
+
+    const button = screen.getByRole('button', { name: 'test' })
+    const icon = screen.getByLabelText('Activity')
+
+    expect(button).toBeInTheDocument()
+    expect(icon).toBeInTheDocument()
+    expect(button).toHaveStyleRule('gap', '0.5rem')
+  })
+
   it('should trigger onClick', () => {
     const onClick = jest.fn()
     render(
