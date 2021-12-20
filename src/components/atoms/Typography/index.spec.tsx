@@ -22,6 +22,7 @@ describe('Typography component', () => {
 
     Object.keys(typographyVariants).forEach((variant) => {
       const Typography = screen.getByText(variant)
+      expect(Typography).toHaveStyleRule('color', '#FFFFFF')
       expect(Typography).toHaveStyleRule(
         'font-size',
         typographyVariants[variant as keyof typeof typographyVariants].fontSize,
