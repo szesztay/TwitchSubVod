@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import * as S from './styles'
 
 interface IconProps extends React.HTMLAttributes<HTMLButtonElement> {
@@ -6,20 +7,25 @@ interface IconProps extends React.HTMLAttributes<HTMLButtonElement> {
   title: string
   isButton?: boolean
   as?: any
+  ref?: any
 }
 
-const Icon = ({ icon, onClick, title, isButton, ...props }: IconProps) => {
-  return (
-    <S.IconButton
-      onClick={onClick}
-      aria-label={title}
-      title={title}
-      isButton={isButton}
-      {...props}
-    >
-      {icon}
-    </S.IconButton>
-  )
-}
+const Icon = forwardRef<HTMLButtonElement, IconProps>(
+  (props: IconProps, ref) => {
+    const { icon, onClick, title, isButton, ...rest } = props
+    return (
+      <S.IconButton
+        onClick={onClick}
+        aria-label={title}
+        title={title}
+        isButton={isButton}
+        ref={ref}
+        {...rest}
+      >
+        {icon}
+      </S.IconButton>
+    )
+  },
+)
 
 export default Icon
