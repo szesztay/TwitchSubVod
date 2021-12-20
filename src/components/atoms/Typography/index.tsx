@@ -1,3 +1,4 @@
+import { darkTheme } from '~/layout/theme'
 import * as S from './styles'
 import { TypographyProps } from './types'
 
@@ -18,7 +19,7 @@ const Typography = ({
   return (
     <S.TypographyContainer
       variant={variant}
-      color={color || '#ffffff'}
+      color={color || darkTheme.colors.text}
       maxWidth={maxWidth}
       lineLimit={lineLimit}
       as={as || 'span'}

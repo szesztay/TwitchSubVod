@@ -7,7 +7,7 @@ export const TypographyContainer = styled.div<TypographyProps>`
   font-size: ${({ variant }) => typographyVariants[variant].fontSize};
   font-weight: ${({ variant }) => typographyVariants[variant].fontWeight};
   line-height: ${({ variant }) => typographyVariants[variant].lineHeight};
-  color: ${({ color }) => color || 'inherit'};
+  color: ${({ color }) => color};
   max-width: ${({ maxWidth }) => maxWidth || '100%'};
   cursor: ${({ cursor }) => cursor || 'inherit'};
 
