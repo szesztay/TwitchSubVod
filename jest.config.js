@@ -12,5 +12,6 @@ module.exports = {
     '!src/custom.d.ts',
     '!src/**/types.ts',
     '!src/@types/**',
+    '!src/components/screens/**',
   ],
 }
