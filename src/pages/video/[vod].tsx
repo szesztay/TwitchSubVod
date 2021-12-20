@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Video from '~/components/screens/video/[vod]'
+import Video from '~/components/screens/Video/[vod]'
 
 const Home: NextPage = () => {
   return <Video />
