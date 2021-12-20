@@ -1,6 +1,6 @@
 import { StreamerInformation } from '~/@types/StreamerInformation'
 import { VodInformation } from '~/@types/VodInformation'
-import VideoButton from '~/components/molecules/VideoButton'
+import VideoButton from '~/components/organisms/VideoButton'
 import * as S from './styles'
 
 interface IVideos {

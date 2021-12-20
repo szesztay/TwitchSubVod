@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import styled from 'styled-components'
 import { StreamerInformation } from '~/@types/StreamerInformation'
 import { VodInformation } from '~/@types/VodInformation'
-import VideoButtonGroup from '~/components/organisms/VideoButtonGroup'
+import VideoButtonGroup from '~/components/templates/VideoButtonGroup'
 
 const Container = styled.div`
   display: flex;
