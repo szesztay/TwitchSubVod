@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { FiMenu } from 'react-icons/fi'
-import { IoNotificationsSharp, IoPersonSharp } from 'react-icons/io5'
+import { IoNotificationsSharp, IoPersonSharp, IoSearch } from 'react-icons/io5'
 import { RiFeedbackFill } from 'react-icons/ri'
 import ButtonPill from '~/components/atoms/ButtonPill'
+import Input from '~/components/atoms/Input'
 import Icon from '../../atoms/Icon'
 import * as S from './styles'
 
@@ -34,7 +35,15 @@ const Header = () => {
             title="pogu.live"
           />
         </S.HeaderArea>
-        <S.HeaderArea>Search bar</S.HeaderArea>
+        <S.HeaderArea flexGrow={1}>
+          <Input
+            icon={<IoSearch />}
+            iconPosition="left"
+            placeholder="Search..."
+            id="search-bar"
+            aria-label="Search"
+          />
+        </S.HeaderArea>
         <S.HeaderArea gap={8}>
           <ButtonPill
             icon={<RiFeedbackFill />}

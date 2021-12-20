@@ -20,11 +20,12 @@ export const HeaderContainer = styled.div`
   padding: 0 16px;
 `
 
-export const HeaderArea = styled.div<{ gap?: number }>`
+export const HeaderArea = styled.div<{ gap?: number; flexGrow?: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: ${({ gap }) => gap || 0}px;
+  flex-grow: ${({ flexGrow }) => flexGrow || 0};
 
   svg {
     width: 24px;
