@@ -73,4 +73,27 @@ describe('StreamDescription component', () => {
       screen.queryByTitle(mockedStreamerInformation.displayName),
     ).toHaveStyleRule('width', '100px')
   })
+
+  it('should render with an url in the whole container', () => {
+    const { container } = render(
+      <ThemeProvider theme={darkTheme}>
+        <StreamDescription
+          streamerInformation={mockedStreamerInformation}
+          vodInformation={mockedVodInformation}
+          urlProps={{
+            href: '/video/44818023629',
+            as: '/video/44818023629',
+          }}
+        />
+      </ThemeProvider>,
+    )
+
+    const title = screen.getByText(mockedVodInformation.title)
+    const name = screen.getByText(mockedStreamerInformation.displayName)
+
+    expect(container).toBeInTheDocument()
+
+    expect(title).toHaveAttribute('href', '/video/44818023629')
+    expect(name).toHaveAttribute('href', '/videos/xqcow')
+  })
 })

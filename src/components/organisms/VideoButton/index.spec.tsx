@@ -35,12 +35,13 @@ describe('VideoButton component', () => {
     )
 
     const container = screen.getByTestId('44818023629')
+    const title = screen.getByText(mockedVodInformation.title)
 
     expect(container).toBeInTheDocument()
     expect(
       screen.getByTitle(mockedStreamerInformation.displayName),
     ).toHaveAttribute('src', mockedStreamerInformation.logo)
-    expect(container).toHaveAttribute('href', '/video/44818023629')
+    expect(title).toHaveAttribute('href', '/video/44818023629')
     expect(container).toHaveStyleRule('display', 'flex')
   })
 
@@ -56,12 +57,13 @@ describe('VideoButton component', () => {
     )
 
     const container = screen.getByTestId('44818023629')
+    const title = screen.getByText(mockedVodInformation.title)
 
     expect(container).toBeInTheDocument()
     expect(
       screen.queryByTitle(mockedStreamerInformation.displayName),
     ).not.toBeInTheDocument()
-    expect(container).toHaveAttribute('href', '/video/44818023629')
+    expect(title).toHaveAttribute('href', '/video/44818023629')
     expect(container).toHaveStyleRule('display', 'flex')
   })
 
@@ -78,9 +80,10 @@ describe('VideoButton component', () => {
     )
 
     const container = screen.getByTestId('44818023629')
+    const title = screen.getByText(mockedVodInformation.title)
 
     expect(container).toBeInTheDocument()
-    expect(container).toHaveAttribute('href', '/video/44818023629')
+    expect(title).toHaveAttribute('href', '/video/44818023629')
     expect(container).toHaveStyleRule('display', 'grid')
   })
 })
