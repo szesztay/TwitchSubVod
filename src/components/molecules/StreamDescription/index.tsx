@@ -41,7 +41,7 @@ const StreamDescription = ({
         </Link>
       )}
 
-      <Box direction="column" gap={'2px'}>
+      <Box flexDirection="column" gap={'2px'}>
         <Typography
           variant="h6"
           lineLimit={lineLimit || 3}

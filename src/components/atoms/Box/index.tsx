@@ -9,7 +9,7 @@ interface BoxPropsComponent extends BoxProps {
 const Box = ({
   alignItems,
   justifyContent,
-  direction,
+  flexDirection,
   gap,
   children,
   ...props
@@ -18,7 +18,7 @@ const Box = ({
     <S.BoxContainer
       alignItems={alignItems}
       justifyContent={justifyContent}
-      direction={direction}
+      flexDirection={flexDirection}
       gap={gap}
       {...props}
     >

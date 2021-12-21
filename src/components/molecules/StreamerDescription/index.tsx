@@ -16,10 +16,10 @@ const StreamerDescription = ({
   avatarUrl,
 }: StreamerDescriptionProps) => {
   return (
-    <Box direction="column" gap="16px">
+    <Box flexDirection="column" gap="16px">
       <Avatar title={name} src={avatarUrl} />
 
-      <Box direction="column" gap="4px">
+      <Box flexDirection="column" gap="4px">
         <Typography variant="h5" title={name} as="h2">
           {name}
         </Typography>

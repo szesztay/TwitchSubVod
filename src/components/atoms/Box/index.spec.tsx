@@ -21,7 +21,7 @@ describe('Box component', () => {
         <Box
           alignItems="center"
           justifyContent="center"
-          direction="column"
+          flexDirection="column"
           gap="10px"
         >
           Hello World

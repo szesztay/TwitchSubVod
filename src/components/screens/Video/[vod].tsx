@@ -18,8 +18,8 @@ const Video: NextPage = () => {
 
   return (
     <S.Container>
-      <Box direction="column" gap="64px">
-        <Box direction="column" gap="16px">
+      <Box flexDirection="column" gap="64px">
+        <Box flexDirection="column" gap="16px">
           <div
             style={{
               display: 'flex',
@@ -45,7 +45,7 @@ const Video: NextPage = () => {
         </Box>
         <VideoButtonGroup videos={videos} minVideoWidth="200px" />
       </Box>
-      <Box direction="column">
+      <Box flexDirection="column">
         <div
           style={{
             display: 'flex',

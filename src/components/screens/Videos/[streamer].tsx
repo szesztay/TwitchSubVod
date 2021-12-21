@@ -15,7 +15,7 @@ const Videos: NextPage = () => {
 
   return (
     <S.Container>
-      <Box direction="column" gap="16px" alignItems="center">
+      <Box flexDirection="column" gap="16px" alignItems="center">
         <StreamerDescription
           avatarUrl={mockedStreamerInformation.logo}
           name={mockedStreamerInformation.displayName}
@@ -36,7 +36,7 @@ const Videos: NextPage = () => {
         />
       </Box>
 
-      <Box direction="column" gap="20px" alignItems="center">
+      <Box flexDirection="column" gap="20px" alignItems="center">
         <div
           style={{
             display: 'flex',
