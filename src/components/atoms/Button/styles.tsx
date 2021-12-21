@@ -1,13 +1,16 @@
 import styled from 'styled-components'
 
-export const ButtonContainer = styled.button<{
+interface ButtonContainerProps {
   variant: 'primary' | 'secondary'
-}>`
+  buttonWidth?: string
+}
+
+export const ButtonContainer = styled.button<ButtonContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  width: fit-content;
+  width: ${({ buttonWidth }) => buttonWidth || 'fit-content'};
   height: fit-content;
   padding: 0.875rem 2.215rem;
   border-radius: 0.375rem;

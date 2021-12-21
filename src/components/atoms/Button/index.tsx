@@ -5,6 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconPosition?: 'left' | 'right'
   text: string
   variant?: 'primary' | 'secondary'
+  buttonWidth?: string
 }
 
 const Button = ({
@@ -13,10 +14,15 @@ const Button = ({
   iconPosition,
   text,
   variant,
+  buttonWidth,
   ...props
 }: ButtonProps) => {
   return (
-    <S.ButtonContainer variant={variant || 'primary'} {...props}>
+    <S.ButtonContainer
+      variant={variant || 'primary'}
+      buttonWidth={buttonWidth}
+      {...props}
+    >
       {iconPosition === 'left' && icon}
       <S.ButtonText>{text}</S.ButtonText>
       {iconPosition === 'right' && icon}
