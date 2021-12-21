@@ -24,6 +24,11 @@ export const GlobalStyles = createGlobalStyle`
     list-style: none;
   }
 
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   ::selection {
     background: ${({ theme }) => theme.colors.pink900};
     color: ${({ theme }) => theme.colors.white};

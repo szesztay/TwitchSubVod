@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { StreamerInformation } from '~/@types/StreamerInformation'
 import { VodInformation } from '~/@types/VodInformation'
 import Avatar from '~/components/atoms/Avatar'
@@ -25,13 +26,19 @@ const StreamDescription = ({
   return (
     <Box alignItems="flex-start" justifyContent="space-between" gap="9px">
       {!noAvatar && (
-        <Box>
-          <Avatar
-            title={streamerInformation.displayName}
-            src={streamerInformation.logo}
-            width={avatarWidth || '32px'}
-          />
-        </Box>
+        <Link
+          href="/videos/[streamer]"
+          as={`/videos/${streamerInformation.name}`}
+          passHref
+        >
+          <Box as="a">
+            <Avatar
+              title={streamerInformation.displayName}
+              src={streamerInformation.logo}
+              width={avatarWidth || '32px'}
+            />
+          </Box>
+        </Link>
       )}
 
       <Box direction="column" gap={'2px'}>
@@ -43,9 +50,20 @@ const StreamDescription = ({
         >
           {vodInformation.title}
         </Typography>
-        <Typography variant="body2" className="stream-description-name">
-          {streamerInformation.displayName}
-        </Typography>
+        <Link
+          href="/videos/[streamer]"
+          as={`/videos/${streamerInformation.name}`}
+          passHref
+        >
+          <Typography
+            variant="body2"
+            className="stream-description-name"
+            as="a"
+            cursor="pointer"
+          >
+            {streamerInformation.displayName}
+          </Typography>
+        </Link>
         <Box>
           <Typography variant="body2" className="stream-description-views">
             {vodInformation.viewCount} views
