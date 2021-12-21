@@ -3,6 +3,7 @@ import { BoxProps } from './types'
 
 interface BoxPropsComponent extends BoxProps {
   children: React.ReactNode
+  as?: any
 }
 
 const Box = ({
