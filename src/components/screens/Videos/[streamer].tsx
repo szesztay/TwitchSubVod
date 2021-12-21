@@ -3,14 +3,10 @@ import { useRouter } from 'next/router'
 import Box from '~/components/atoms/Box'
 import Button from '~/components/atoms/Button'
 import Typography from '~/components/atoms/Typography'
-import StreamDescription from '~/components/molecules/StreamDescription'
+import StreamerDescription from '~/components/molecules/StreamerDescription'
 import VideoButtonGroup from '~/components/templates/VideoButtonGroup'
 import * as S from './styles'
-import {
-  mockedStreamerInformation,
-  mockedVodInformation,
-  videos,
-} from './_mockedData'
+import { mockedStreamerInformation, videos } from './_mockedData'
 
 const Videos: NextPage = () => {
   const router = useRouter()
@@ -19,8 +15,25 @@ const Videos: NextPage = () => {
 
   return (
     <S.Container>
-      <Box direction="column" gap="16px">
-        streamer description box
+      <Box direction="column" gap="16px" alignItems="center">
+        <StreamerDescription
+          avatarUrl={mockedStreamerInformation.logo}
+          name={mockedStreamerInformation.displayName}
+          followers={mockedStreamerInformation.followers}
+          description={mockedStreamerInformation.description}
+        />
+        <Button text="Follow" buttonWidth="100%" />
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            maxWidth: '160px',
+            height: '600px',
+            background: '#000',
+            borderRadius: '8px',
+            marginBottom: '8px',
+          }}
+        />
       </Box>
 
       <Box direction="column" gap="20px" alignItems="center">

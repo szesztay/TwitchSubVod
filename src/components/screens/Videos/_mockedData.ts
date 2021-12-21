@@ -1,10 +1,13 @@
 import { StreamerInformation } from '~/@types/StreamerInformation'
 import { VodInformation } from '~/@types/VodInformation'
 
-export const mockedStreamerInformation: StreamerInformation = {
+export const mockedStreamerInformation = {
   displayName: 'xQcOw',
   name: 'xqcow',
   logo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/xqcow-profile_image-9298dca608632101-150x150.jpeg',
+  followers: 9323989,
+  description:
+    'Overwatch Professional tank player and full time streamer. EZ Clap',
 }
 
 export const mockedVodInformation: VodInformation = {
