@@ -1,21 +1,17 @@
+import { forwardRef } from 'react'
 import { darkTheme } from '~/layout/theme'
 import * as S from './styles'
 import { TypographyProps } from './types'
 
 interface TypographyPropsComponent extends TypographyProps {
-  children: React.ReactNode
+  children: React.ReactNode | string
   as?: any
 }
 
-const Typography = ({
-  variant,
-  color,
-  maxWidth,
-  lineLimit,
-  children,
-  as,
-  ...props
-}: TypographyPropsComponent & React.HTMLAttributes<HTMLHeadingElement>) => {
+const Typography = forwardRef<
+  HTMLHeadingElement,
+  TypographyPropsComponent & React.HTMLAttributes<HTMLHeadingElement>
+>(({ variant, color, maxWidth, lineLimit, children, as, ...props }, ref) => {
   return (
     <S.TypographyContainer
       variant={variant}
@@ -28,6 +24,6 @@ const Typography = ({
       {children}
     </S.TypographyContainer>
   )
-}
+})
 
 export default Typography

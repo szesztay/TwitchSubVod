@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { forwardRef } from 'react'
 import { StreamerInformation } from '~/@types/StreamerInformation'
 import { VodInformation } from '~/@types/VodInformation'
 import Avatar from '~/components/atoms/Avatar'
@@ -14,6 +15,10 @@ interface StreamDescriptionProps {
   avatarWidth?: string
   noAvatar?: boolean
   lineLimit?: number
+  urlProps?: {
+    href: string
+    as: string
+  }
 }
 
 const StreamDescription = ({
@@ -22,6 +27,7 @@ const StreamDescription = ({
   avatarWidth,
   noAvatar,
   lineLimit,
+  urlProps,
 }: StreamDescriptionProps) => {
   return (
     <Box alignItems="flex-start" justifyContent="space-between" gap="9px">
@@ -42,14 +48,28 @@ const StreamDescription = ({
       )}
 
       <Box flexDirection="column" gap={'2px'}>
-        <Typography
-          variant="h6"
-          lineLimit={lineLimit || 3}
-          title={vodInformation.title}
-          className="stream-description-title"
-        >
-          {vodInformation.title}
-        </Typography>
+        {urlProps?.href ? (
+          <Link href={urlProps.href} as={urlProps.as} passHref>
+            <Typography
+              variant="h6"
+              lineLimit={lineLimit || 3}
+              title={vodInformation.title}
+              className="stream-description-title"
+              as="a"
+            >
+              {vodInformation.title}
+            </Typography>
+          </Link>
+        ) : (
+          <Typography
+            variant="h6"
+            lineLimit={lineLimit || 3}
+            title={vodInformation.title}
+            className="stream-description-title"
+          >
+            {vodInformation.title}
+          </Typography>
+        )}
         <Link
           href="/videos/[streamer]"
           as={`/videos/${streamerInformation.name}`}
@@ -64,14 +84,28 @@ const StreamDescription = ({
             {streamerInformation.displayName}
           </Typography>
         </Link>
-        <Box>
-          <Typography variant="body2" className="stream-description-views">
-            {vodInformation.viewCount} views
-          </Typography>
-          <Typography variant="body2" className="stream-description-date">
-            {vodInformation.date}
-          </Typography>
-        </Box>
+
+        {urlProps?.href ? (
+          <Link href={urlProps.href} as={urlProps.as} passHref>
+            <Box as="a">
+              <Typography variant="body2" className="stream-description-views">
+                {vodInformation.viewCount} views
+              </Typography>
+              <Typography variant="body2" className="stream-description-date">
+                {vodInformation.date}
+              </Typography>
+            </Box>
+          </Link>
+        ) : (
+          <Box>
+            <Typography variant="body2" className="stream-description-views">
+              {vodInformation.viewCount} views
+            </Typography>
+            <Typography variant="body2" className="stream-description-date">
+              {vodInformation.date}
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   )

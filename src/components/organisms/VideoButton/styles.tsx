@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const VideoButtonContainer = styled.a<{ isMinimal?: boolean }>`
+export const VideoButtonContainer = styled.div<{ isMinimal?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
