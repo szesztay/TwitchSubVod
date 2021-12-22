@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Box from '~/components/atoms/Box'
 import Button from '~/components/atoms/Button'
+import NamedToggle from '~/components/atoms/NamedToggle'
 import Typography from '~/components/atoms/Typography'
 import StreamerDescription from '~/components/molecules/StreamerDescription'
 import VideoButtonGroup from '~/components/templates/VideoButtonGroup'
@@ -51,7 +52,23 @@ const Videos: NextPage = () => {
         <Typography variant="h3">
           All {mockedStreamerInformation.displayName} VODs
         </Typography>
-        Sub only VODs | Deleted VODs
+        <NamedToggle
+          defaultSelected="subOnly"
+          buttons={[
+            {
+              label: 'Sub only VODs',
+              value: 'subOnly',
+              url: '/videos/[streamer]',
+              as: `/videos/${mockedStreamerInformation.name}`,
+            },
+            {
+              label: 'Deleted VODs',
+              value: 'deletedVods',
+              url: '/deletedvods/[streamer]',
+              as: `/deletedvods/${mockedStreamerInformation.name}`,
+            },
+          ]}
+        />
         <VideoButtonGroup videos={videos} />
         <div
           style={{
